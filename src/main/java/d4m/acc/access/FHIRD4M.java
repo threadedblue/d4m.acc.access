@@ -6,13 +6,10 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcoreFactory;
-import org.hl7.fhir.emf.FHIRSDS;
 import org.hl7.fhir.emf.SDSSwitch;
 import org.hl7.fhir.emf.SkipSwitch;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import com.google.common.collect.Table;
 
 // This class is not used.  The implementation needs work.
 // Usage is in the future.
