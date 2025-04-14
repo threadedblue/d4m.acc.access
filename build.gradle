@@ -25,7 +25,7 @@ dependencies {
 
 	implementation project(':fhir.serdeser')
 	implementation 'org.hl7:fhir.emf:4.3.0'
-	implementation('edu.mit.ll:graphulo:3.1.2') {
+	api ('edu.mit.ll:graphulo:3.1.2') {
 		exclude group: 'org.apache.logging.log4j'
 		exclude group: 'org.slf4j', module: 'slf4j-log4j12'
 		exclude group: 'org.slf4j', module: 'reload4j'

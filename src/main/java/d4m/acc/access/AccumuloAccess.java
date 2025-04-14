@@ -1,7 +1,6 @@
 package d4m.acc.access;
 
 import java.io.ByteArrayInputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.Properties;
@@ -30,21 +29,33 @@ public class AccumuloAccess {
 	private static final Logger log = LoggerFactory.getLogger(AccumuloAccess.class);
 
 	protected AccumuloClient client;
-	Properties clientProperties;
 
 	final String pairDecor = "T";
 	final String degreeDecor = "Deg";
 
-	public AccumuloAccess() {
-		super();
-		this.clientProperties = new Properties();
-		try {
-			clientProperties
-					.load(AccumuloAccess.class.getClassLoader().getResourceAsStream("accumulo-client.properties"));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		this.client = Accumulo.newClient().from(clientProperties).build();
+	// public AccumuloAccess() {
+	// 	super();
+	// 	try {
+	// 		log.trace("start=>");
+	// 		InputStream in = AccumuloAccess.class.getClassLoader().getResourceAsStream("accumulo-client.properties");
+	// 		Properties props = new Properties();
+	// 		props.load(in);
+
+	// 		this.client = Accumulo.newClient()
+	// 		.from(props)
+	// 		.build();
+	// 	} catch (Exception e) {
+	// 		log.error(", e");
+	// 	} finally {
+	// 		log.trace("auth.principal={}", client.properties().getProperty("auth.principal"));
+	// 		log.trace("auth.token={}", client.properties().getProperty("auth.token"));
+	// 	}
+	// }
+
+	AccumuloAccess() {
+		this.client = Accumulo.newClient()
+		.to("accumulo", "localhost:2181")
+		.as("root", "D").build();
 	}
 
 	public SortedSet<String> listTables() {
@@ -53,7 +64,13 @@ public class AccumuloAccess {
 		return ops.list();
 	}
 
+	public String currentUser() {
+		log.info("user=whoami");
+		return client.whoami();
+	}
+
 	public String createTable(String tableName) {
+		log.trace("tableName={}", tableName);
 		TableOperations ops = client.tableOperations();
 		try {
 			ops.create(tableName);
@@ -63,7 +80,10 @@ public class AccumuloAccess {
 		return tableName;
 	}
 
-	public String createTablePair(String tableName) {
+	public String createTablePair(String tableName) throws Exception {
+		log.trace("tableName={} {}", 1, tableName);
+		log.trace("auth.principal={}", client.properties().getProperty("auth.principal"));
+		log.trace("auth.token={}", client.properties().getProperty("auth.token"));
 		TableOperations ops = client.tableOperations();
 		try {
 			ops.create(tableName);
@@ -72,6 +92,8 @@ public class AccumuloAccess {
 		} catch (AccumuloException | AccumuloSecurityException | TableExistsException e) {
 			e.printStackTrace();
 		}
+		log.trace("tableName={} {}", 2, tableName);
+
 		return tableName;
 	}
 
@@ -81,7 +103,7 @@ public class AccumuloAccess {
 			createTable(tableName);
 		}
 		try {
-			AccumuloInsert accIns = new AccumuloInsert(clientProperties.getProperty("instance.name"), clientProperties.getProperty("instance.zookeepers"), tableName, clientProperties.getProperty("auth.principal"), clientProperties.getProperty(""));
+			AccumuloInsert accIns = new AccumuloInsert(client.properties().getProperty("instance.name"), client.properties().getProperty("instance.zookeepers"), tableName, client.properties().getProperty("auth.principal"), client.properties().getProperty("auth.token"));
 			accIns.doProcessing(rcvs.getRows(), rcvs.getCols(), rcvs.getVals(),rcvs.getF(), "PUBLIC");
 		} catch (Exception e) {
 			log.error("", e);
@@ -90,9 +112,9 @@ public class AccumuloAccess {
 
 	public void insertPair(String resource, SDS_FORMAT format, String tableName) {
 
-		if (!client.tableOperations().exists(tableName)) {
-			createTablePair(tableName);
-		}
+		// if (!client.tableOperations().exists(tableName)) {
+		// 	createTablePair(tableName);
+		// }
 
 		byte[] bytes = resource.getBytes(StandardCharsets.UTF_8);
 		InputStream reader = new ByteArrayInputStream(bytes);
