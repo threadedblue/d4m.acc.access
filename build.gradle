@@ -16,7 +16,8 @@ repositories {
 
 dependencies {
 
-	implementation project(':fhirjson-jackson')
+	implementation project(':fhir.serdser')
+	implementation project(':emfjson-jackson')
 	implementation libs.fhirEmf
 	api libs.graphulo
 	implementation libs.accumulo
