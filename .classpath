@@ -14,7 +14,7 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-17/"/>
 	<classpathentry kind="con" path="org.eclipse.buildship.core.gradleclasspathcontainer"/>
-	<classpathentry kind="src" path="/FHIRSDS">
+	<classpathentry kind="src" path="/fhir.serdeser">
 		<attributes>
 			<attribute name="gradle.buildServer" value="true"/>
 		</attributes>
