@@ -1,29 +1,21 @@
 package d4m.acc.access;
 
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
-import java.nio.charset.StandardCharsets;
-import java.util.Properties;
 import java.util.SortedSet;
 
 import org.apache.accumulo.core.client.Accumulo;
 import org.apache.accumulo.core.client.AccumuloClient;
 import org.apache.accumulo.core.client.AccumuloException;
 import org.apache.accumulo.core.client.AccumuloSecurityException;
-import org.apache.accumulo.core.client.BatchWriter;
 import org.apache.accumulo.core.client.TableExistsException;
 import org.apache.accumulo.core.client.TableNotFoundException;
 import org.apache.accumulo.core.client.admin.TableOperations;
-import org.eclipse.emf.ecore.EObject;
-import org.hl7.fhir.emf.FHIRSerDeser;
-import org.hl7.fhir.emf.Finals.SDS_FORMAT;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import edu.mit.ll.d4m.db.cloud.accumulo.AccumuloInsert;
 
-@Component
+@Service
 public class AccumuloAccess {
 
 	private static final Logger log = LoggerFactory.getLogger(AccumuloAccess.class);
@@ -32,25 +24,6 @@ public class AccumuloAccess {
 
 	final String pairDecor = "T";
 	final String degreeDecor = "Deg";
-
-	// public AccumuloAccess() {
-	// 	super();
-	// 	try {
-	// 		log.trace("start=>");
-	// 		InputStream in = AccumuloAccess.class.getClassLoader().getResourceAsStream("accumulo-client.properties");
-	// 		Properties props = new Properties();
-	// 		props.load(in);
-
-	// 		this.client = Accumulo.newClient()
-	// 		.from(props)
-	// 		.build();
-	// 	} catch (Exception e) {
-	// 		log.error(", e");
-	// 	} finally {
-	// 		log.trace("auth.principal={}", client.properties().getProperty("auth.principal"));
-	// 		log.trace("auth.token={}", client.properties().getProperty("auth.token"));
-	// 	}
-	// }
 
 	AccumuloAccess() {
 		this.client = Accumulo.newClient()
@@ -80,23 +53,46 @@ public class AccumuloAccess {
 		return tableName;
 	}
 
-	public String createTablePair(String tableName) throws Exception {
+	public String createTablePair(String tableName) {
 		log.trace("tableName={} {}", 1, tableName);
 		log.trace("auth.principal={}", client.properties().getProperty("auth.principal"));
 		log.trace("auth.token={}", client.properties().getProperty("auth.token"));
 		TableOperations ops = client.tableOperations();
-		try {
-			ops.create(tableName);
-			ops.create(tableName + pairDecor);
-			ops.create(tableName + degreeDecor);
-		} catch (AccumuloException | AccumuloSecurityException | TableExistsException e) {
-			e.printStackTrace();
+		if (!ops.exists(tableName)) {
+			try {
+				ops.create(tableName);
+				ops.create(tableName.concat(pairDecor));
+				ops.create(tableName.concat(degreeDecor));
+			} catch (AccumuloException | AccumuloSecurityException | TableExistsException e) {
+				e.printStackTrace();
+			}
+			log.trace("tableName={} {}", 2, tableName);
+		} else {
+			log.info("Table {} exists", tableName);
 		}
-		log.trace("tableName={} {}", 2, tableName);
-
 		return tableName;
 	}
 
+	public String dropTablePair(String tableName) {
+		log.trace("tableName={} {}", 1, tableName);
+		log.trace("auth.principal={}", client.properties().getProperty("auth.principal"));
+		log.trace("auth.token={}", client.properties().getProperty("auth.token"));
+		TableOperations ops = client.tableOperations();
+		if (ops.exists(tableName)) {
+				try {
+					ops.delete(tableName);
+					ops.delete(tableName.concat(pairDecor));
+					ops.delete(tableName.concat(degreeDecor));
+				} catch (AccumuloException | AccumuloSecurityException | TableNotFoundException e) {
+					log.error("", e);
+				}
+
+			log.trace("tableName={} {}", 2, tableName);
+		} else {
+			log.info("Table {} does not exist", tableName);
+		}
+		return tableName;
+	}
 	public void insert(RCVs rcvs, String tableName) {
 
 		if (!client.tableOperations().exists(tableName)) {
@@ -110,49 +106,18 @@ public class AccumuloAccess {
 		}
 	}
 
-	public void insertPair(String resource, SDS_FORMAT format, String tableName) {
+	public void insertPair(RCVs rcvs, String tableName) {
 
-		// if (!client.tableOperations().exists(tableName)) {
-		// 	createTablePair(tableName);
-		// }
-
-		byte[] bytes = resource.getBytes(StandardCharsets.UTF_8);
-		InputStream reader = new ByteArrayInputStream(bytes);
-		EObject eObject = FHIRSerDeser.load(reader, format);
-
-		try {
-			final BatchWriter bw = client.createBatchWriter(tableName);
-			final BatchWriter bwT = client.createBatchWriter(tableName + pairDecor);
-			final BatchWriter bwDeg = client.createBatchWriter(tableName + degreeDecor);
-			
-			
-		} catch (TableNotFoundException e) {
-			e.printStackTrace();
+		if (!client.tableOperations().exists(tableName)) {
+			createTablePair(tableName);
 		}
-	}
-
-//	public void insert(String resource, SDS_FORMAT format, String tableName) {
-//
-//		if (client.tableOperations().exists(tableName)) {
-//			try {
-//				
-//				final BatchWriter bw = client.createBatchWriter(tableName);
-//
-//				String[] rows = rcvs.getRr();
-//				for (int i = 0; i < rows.length; i++) {
-//					Mutation m = new Mutation(rows[i]);
-//					String[] cols = rcvs.getCc();
-//					String[] vals = rcvs.getVv();
-//					for (int j = 0; j < cols.length; j++) {
-//						m.put(new Text(rcvs.getF()), new Text(cols[j]), new Value(vals[j]));
-//					}
-//					bw.addMutation(m);
-//				}
-//				bw.close();
-//			} catch (TableNotFoundException | MutationsRejectedException e) {
-//				e.printStackTrace();
-//			}
-//		}
-//	}
-
+		try {
+			AccumuloInsert accIns = new AccumuloInsert(client.properties().getProperty("instance.name"), client.properties().getProperty("instance.zookeepers"), tableName, client.properties().getProperty("auth.principal"), client.properties().getProperty("auth.token"));
+			accIns.doProcessing(rcvs.getRows(), rcvs.getCols(), rcvs.getVals(), rcvs.getF(), "PUBLIC");
+			AccumuloInsert accInsT = new AccumuloInsert(client.properties().getProperty("instance.name"), client.properties().getProperty("instance.zookeepers"), tableName + pairDecor, client.properties().getProperty("auth.principal"), client.properties().getProperty("auth.token"));
+			accIns.doProcessing(rcvs.getCols(), rcvs.getRows(), rcvs.getVals(), rcvs.getF(), "PUBLIC");
+		} catch (Exception e) {
+			log.error("", e);
+		}
+	}	
 }

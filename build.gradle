@@ -16,8 +16,6 @@ repositories {
 
 dependencies {
 
-	implementation project(':fhir.serdeser')
-	implementation project(':emfjson-jackson')
 	implementation libs.fhirEmf
 	api libs.graphulo
 	implementation libs.accumulo
@@ -25,12 +23,11 @@ dependencies {
 	implementation libs.slf4jAPI
 	implementation libs.logbackClassic
 
-	// EMF
-	implementation libs.emfCommon
-	implementation libs.emfEcore
-	implementation libs.emfEcoreXMI
+    testImplementation libs.junitJupiter
+    testImplementation libs.junitJupiterAPI
 }
 
 tasks.named('test') {
 	useJUnitPlatform()
 }
+
