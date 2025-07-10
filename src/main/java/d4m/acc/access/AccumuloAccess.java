@@ -13,6 +13,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import edu.mit.ll.d4m.db.cloud.D4mDataSearch;
+import edu.mit.ll.d4m.db.cloud.D4mDbResultSet;
+import edu.mit.ll.d4m.db.cloud.D4mException;
 import edu.mit.ll.d4m.db.cloud.accumulo.AccumuloInsert;
 
 @Service
@@ -24,11 +27,13 @@ public class AccumuloAccess {
 
 	final String pairDecor = "T";
 	final String degreeDecor = "Deg";
+	private String USER = "root";
+	public final String FAMILY = "";
 
 	AccumuloAccess() {
 		this.client = Accumulo.newClient()
 		.to("accumulo", "localhost:2181")
-		.as("root", "D").build();
+		.as(USER, "D").build();
 	}
 
 	public SortedSet<String> listTables() {
@@ -115,9 +120,29 @@ public class AccumuloAccess {
 			AccumuloInsert accIns = new AccumuloInsert(client.properties().getProperty("instance.name"), client.properties().getProperty("instance.zookeepers"), tableName, client.properties().getProperty("auth.principal"), client.properties().getProperty("auth.token"));
 			accIns.doProcessing(rcvs.getRows(), rcvs.getCols(), rcvs.getVals(), rcvs.getF(), "PUBLIC");
 			AccumuloInsert accInsT = new AccumuloInsert(client.properties().getProperty("instance.name"), client.properties().getProperty("instance.zookeepers"), tableName + pairDecor, client.properties().getProperty("auth.principal"), client.properties().getProperty("auth.token"));
-			accIns.doProcessing(rcvs.getCols(), rcvs.getRows(), rcvs.getVals(), rcvs.getF(), "PUBLIC");
+			accInsT.doProcessing(rcvs.getCols(), rcvs.getRows(), rcvs.getVals(), rcvs.getF(), "PUBLIC");
 		} catch (Exception e) {
 			log.error("", e);
 		}
 	}	
+
+	public D4mDbResultSet query(String row, String col, String tableName) {
+
+		log.debug("query=={}:{}", row, col);
+
+		String un = client.properties().getProperty("auth.principal");
+		String pw = client.properties().getProperty("auth.token");
+		String authorizations = String.format("%s, %s", un, pw);
+log.debug(un, pw);
+		D4mDataSearch accQry = new D4mDataSearch(client.properties().getProperty("instance.name"), client.properties().getProperty("instance.zookeepers"), tableName, client.properties().getProperty("auth.principal"), client.properties().getProperty("auth.token"));
+		D4mDbResultSet result = null;
+log.debug("accQry=={}", accQry.getTableName());
+		try {
+log.debug(authorizations, "accQry", result);
+			result = accQry.doMatlabQuery(row, col, FAMILY, authorizations);
+		} catch (D4mException e) {
+			log.error("", e);
+		}
+		return result;
+	}
 }
