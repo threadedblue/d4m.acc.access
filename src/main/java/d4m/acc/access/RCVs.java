@@ -16,31 +16,31 @@ public class RCVs {
 		this.f = f;
 	}
 
-	public String getRows() {
+	public String getRr() {
 		return String.format("%s%s", String.join(delimiter, rr), delimiter);
 	}
 
-	public String getCols() {
+	public String getCc() {
 		return String.format("%s%s", String.join(delimiter, cc), delimiter);
 	}
 
-	public String getVals() {
+	public String getVv() {
 		return String.format("%s%s", String.join(delimiter, vv), delimiter);
 	}
 
-	public String[] getRr() {
+	public String[] getRows() {
 		return rr;
 	}
 
-	public String[] getCc() {
+	public String[] getCols() {
 		return cc;
 	}
 
-	public String[] getVv() {
+	public String[] getVals() {
 		return vv;
 	}
 
-	public String getF() {
+	public String getFamily() {
 		return f;
 	}
 
@@ -49,7 +49,7 @@ public class RCVs {
 		bld.append(String.join(",", getRr()));
 		bld.append(String.join(",", getCc()));
 		bld.append(String.join(",", getVv()));
-		bld.append(getF());
+		bld.append(getFamily());
 		return bld.toString();
 	}
 }
