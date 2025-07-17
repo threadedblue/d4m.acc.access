@@ -1,43 +1,60 @@
 package d4m.acc.access;
 
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.util.List;
+import java.util.Map;
 import java.util.SortedSet;
 
 import org.apache.accumulo.core.client.Accumulo;
 import org.apache.accumulo.core.client.AccumuloClient;
 import org.apache.accumulo.core.client.AccumuloException;
 import org.apache.accumulo.core.client.AccumuloSecurityException;
+import org.apache.accumulo.core.client.BatchScanner;
 import org.apache.accumulo.core.client.BatchWriter;
 import org.apache.accumulo.core.client.MutationsRejectedException;
 import org.apache.accumulo.core.client.TableExistsException;
 import org.apache.accumulo.core.client.TableNotFoundException;
 import org.apache.accumulo.core.client.admin.TableOperations;
+import org.apache.accumulo.core.data.Key;
 import org.apache.accumulo.core.data.Mutation;
+import org.apache.accumulo.core.data.Range;
 import org.apache.accumulo.core.data.Value;
+import org.apache.accumulo.core.security.Authorizations;
 import org.apache.hadoop.io.Text;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.xtext.resource.XtextResource;
+import org.eclipse.xtext.resource.XtextResourceSet;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
-import edu.mit.ll.d4m.db.cloud.D4mDataSearch;
-import edu.mit.ll.d4m.db.cloud.D4mDbResultSet;
-import edu.mit.ll.d4m.db.cloud.D4mException;
-import edu.mit.ll.d4m.db.cloud.accumulo.AccumuloInsert;
+import com.fasterxml.jackson.databind.node.ArrayNode;
+import com.fasterxml.jackson.databind.node.JsonNodeFactory;
+import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.google.inject.Injector;
+
+import d4m.acc.query.D4MQueryStandaloneSetup;
+import d4m.acc.query.d4MQuery.AxisExpr;
+import d4m.acc.query.d4MQuery.D4MQuery;
 
 @Service
 public class AccumuloAccess {
 
 	private static final Logger log = LoggerFactory.getLogger(AccumuloAccess.class);
 
-	protected AccumuloClient client;
+	protected static AccumuloClient client;
 
-	final String pairDecor = "T";
-	final String degreeDecor = "Deg";
+	final static String pairDecor = "T";
+	final static String degreeDecor = "Deg";
 	private String USER = "root";
-	public final String FAMILY = "";
+	public static final Text FAMILY = new Text(""); // We are not using family and maybe never will, but just in case,
 
 	AccumuloAccess() {
-		this.client = Accumulo.newClient()
+		AccumuloAccess.client = Accumulo.newClient()
 		.to("accumulo", "localhost:2181")
 		.as(USER, "D").build();
 	}
@@ -104,20 +121,24 @@ public class AccumuloAccess {
 		}
 		return tableName;
 	}
-	public void insert(RCVs rcvs, String tableName) {
 
-		if (!client.tableOperations().exists(tableName)) {
-			createTable(tableName);
-		}
-		try {
-			AccumuloInsert accIns = new AccumuloInsert(client.properties().getProperty("instance.name"), client.properties().getProperty("instance.zookeepers"), tableName, client.properties().getProperty("auth.principal"), client.properties().getProperty("auth.token"));
-//			accIns.doProcessing(rcvs.getRows(), rcvs.getCols(), rcvs.getVals(),rcvs.getFamily(), "PUBLIC");
-		} catch (Exception e) {
-			log.error("", e);
-		}
-	}
+// 	public void insert(RCVs rcvs, String tableName) {
+
+// 		if (!client.tableOperations().exists(tableName)) {
+// 			createTable(tableName);
+// 		}
+// 		try {
+// 			AccumuloInsert accIns = new AccumuloInsert(client.properties().getProperty("instance.name"), client.properties().getProperty("instance.zookeepers"), tableName, client.properties().getProperty("auth.principal"), client.properties().getProperty("auth.token"));
+// //			accIns.doProcessing(rcvs.getRows(), rcvs.getCols(), rcvs.getVals(),rcvs.getFamily(), "PUBLIC");
+// 		} catch (Exception e) {
+// 			log.error("", e);
+// 		}
+// 	}
 
 	public void insertPair(RCVs rcvs, String tableName) {
+
+		log.trace("insertPair=={}", tableName);
+
 		try {
 			if (!client.tableOperations().exists(tableName)) {
 				createTablePair(tableName);
@@ -133,7 +154,9 @@ public class AccumuloAccess {
 
 	private void insertIntoTable(String[] rows, String[] cols, String[] vals, String table, String family)
 			throws TableNotFoundException, MutationsRejectedException {
-		
+
+		log.trace("insertIntoTable=={}", table);
+				
 		try (BatchWriter writer = client.createBatchWriter(table)) {
 			for (int i = 0; i < rows.length; i++) {
 				Mutation mutation = new Mutation(rows[i]);
@@ -143,24 +166,66 @@ public class AccumuloAccess {
 		}
 	}
 
-
-	public D4mDbResultSet query(String row, String col, String tableName) {
-
-		log.debug("query=={}:{}", row, col);
-
-		String un = client.properties().getProperty("auth.principal");
-		String pw = client.properties().getProperty("auth.token");
-		String authorizations = String.format("%s, %s", un, pw);
-log.debug(un, pw);
-		D4mDataSearch accQry = new D4mDataSearch(client.properties().getProperty("instance.name"), client.properties().getProperty("instance.zookeepers"), tableName, client.properties().getProperty("auth.principal"), client.properties().getProperty("auth.token"));
-		D4mDbResultSet result = null;
-log.debug("accQry=={}", accQry.getTableName());
-		try {
-log.debug(authorizations, "accQry", result);
-			result = accQry.doMatlabQuery(row, col, FAMILY, authorizations);
-		} catch (D4mException e) {
-			log.error("", e);
+	public ObjectNode query(D4MRequest qry) {
+			D4MQuery model = (D4MQuery) parseQuery(qry.getPayload().asText());
+			
+			return executeParsedQuery(model, qry.getTableName());
 		}
+
+	public static ObjectNode scanTable(AxisExpr query, String tableName) {
+		List<Range> ranges = new ScanCriteriaBuilder().doSwitch(query);
+		ObjectNode result = JsonNodeFactory.instance.objectNode();
+		ArrayNode rows = result.putArray("rows");
+
+		try {
+			String user = client.whoami();
+			Authorizations auths = client.securityOperations().getUserAuthorizations(user);
+			BatchScanner scanner = client.createBatchScanner(tableName, auths);
+            scanner.fetchColumnFamily(FAMILY); // Fetch the column family or the column qualifier
+			scanner.setRanges(ranges);
+
+			for (Map.Entry<Key, Value> entry : scanner) {
+				ObjectNode row = JsonNodeFactory.instance.objectNode();
+				row.put("row", entry.getKey().getRow().toString());
+				row.put("col", entry.getKey().getColumnFamily().toString());
+				row.put("val", entry.getValue().toString());
+				rows.add(row);
+			}
+
+			scanner.close();
+		} catch (Exception e) {
+			throw new RuntimeException("Accumulo scan failed", e);
+		}
+
 		return result;
+	}
+
+	public D4MQuery parseQuery(String queryString) {
+		// Set up Xtext
+		Injector injector = new D4MQueryStandaloneSetup().createInjectorAndDoEMFRegistration();
+		XtextResourceSet resourceSet = injector.getInstance(XtextResourceSet.class);
+		resourceSet.addLoadOption(XtextResource.OPTION_RESOLVE_ALL, Boolean.TRUE);
+
+		// Create an in-memory resource to hold the parsed model
+		Resource resource = resourceSet.createResource(URI.createURI("dummy:/query.d4mq"));
+		ByteArrayInputStream input = new ByteArrayInputStream(queryString.getBytes(StandardCharsets.UTF_8));
+
+		try {
+			resource.load(input, resourceSet.getLoadOptions());
+		} catch (IOException e) {
+			throw new RuntimeException("Failed to parse query", e);
+		}
+
+		// Get the parsed root object
+		EObject eObject = resource.getContents().get(0);
+		if (eObject instanceof D4MQuery) {
+			return (D4MQuery) eObject;
+		} else {
+			throw new RuntimeException("Parsed root is not a D4MQuery");
+		}
+	}
+
+	public ObjectNode executeParsedQuery(D4MQuery model, String tableName) {
+		return new QueryExecutor(tableName).doSwitch(model);
 	}
 }

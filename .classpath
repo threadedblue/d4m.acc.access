@@ -1,47 +1,651 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="src" output="bin/main" path="src/main/resources">
+	<classpathentry kind="src" output="build/resources/test" path="src/test/resources">
 		<attributes>
-			<attribute name="gradle_scope" value="main"/>
-			<attribute name="gradle_used_by_scope" value="main,test"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="src" output="bin/main" path="src/main/java">
-		<attributes>
-			<attribute name="gradle_scope" value="main"/>
-			<attribute name="gradle_used_by_scope" value="main,test"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="src" path="/fhir.emf-4.3.0">
-		<attributes>
-			<attribute name="gradle.buildServer" value="true"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="src" path="/fhir.serdeser">
-		<attributes>
-			<attribute name="gradle.buildServer" value="true"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="src" path="/emfjson-jackson">
-		<attributes>
-			<attribute name="gradle.buildServer" value="true"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="src" output="bin/test" path="src/test/java">
-		<attributes>
-			<attribute name="gradle_scope" value="test"/>
-			<attribute name="gradle_used_by_scope" value="test"/>
 			<attribute name="test" value="true"/>
+			<attribute name="optional" value="true"/>
+			<attribute name="gradle.buildServer" value="true"/>
+			<attribute name="resource" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="src" output="bin/test" path="src/test/resources">
+	<classpathentry kind="src" output="build/classes/java/test" path="src/test/java">
 		<attributes>
-			<attribute name="gradle_scope" value="test"/>
-			<attribute name="gradle_used_by_scope" value="test"/>
 			<attribute name="test" value="true"/>
+			<attribute name="gradle.buildServer" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-17/"/>
-	<classpathentry kind="con" path="org.eclipse.buildship.core.gradleclasspathcontainer"/>
+	<classpathentry kind="src" output="build/resources/main" path="src/main/resources">
+		<attributes>
+			<attribute name="optional" value="true"/>
+			<attribute name="gradle.buildServer" value="true"/>
+			<attribute name="resource" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="src" output="build/classes/java/main" path="src/main/java">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="src" output="build/classes/java/test" path="build/generated/sources/annotationProcessor/java/test">
+		<attributes>
+			<attribute name="test" value="true"/>
+			<attribute name="optional" value="true"/>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="src" output="build/classes/java/main" path="build/generated/sources/annotationProcessor/java/main">
+		<attributes>
+			<attribute name="optional" value="true"/>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.launching.macosx.MacOSXType/JavaSE-17">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/gcr/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-core/2.16.1/9456bb3cdd0f79f91a5f730a1b1bb041a380c91f/jackson-core-2.16.1.jar" sourcepath="/Users/gcr/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-core/2.16.1/13883e6b942fe5991477befedf3af8a7a82b3e32/jackson-core-2.16.1-sources.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/gcr/.gradle/caches/modules-2/files-2.1/org.eclipse.platform/org.eclipse.equinox.common/3.19.0/5b6633ba85fc1c59a6024e1068a2a0a39458445d/org.eclipse.equinox.common-3.19.0.jar" sourcepath="/Users/gcr/.gradle/caches/modules-2/files-2.1/org.eclipse.platform/org.eclipse.equinox.common/3.19.0/2c036aaf98c670a1d4eb2911eed164469a8d94a1/org.eclipse.equinox.common-3.19.0-sources.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/gcr/.gradle/caches/modules-2/files-2.1/org.eclipse.platform/org.eclipse.core.filesystem/1.10.400/19d958faac475b6d2f400966619841f1517a547d/org.eclipse.core.filesystem-1.10.400.jar" sourcepath="/Users/gcr/.gradle/caches/modules-2/files-2.1/org.eclipse.platform/org.eclipse.core.filesystem/1.10.400/f02977eea26657207f57042f7a1f1ea762ebd095/org.eclipse.core.filesystem-1.10.400-sources.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/gcr/.gradle/caches/modules-2/files-2.1/org.eclipse.jdt/org.eclipse.jdt.launching/3.22.0/6d8f1150ea4fd31a3f7b805c90eaefb8ef84663f/org.eclipse.jdt.launching-3.22.0.jar" sourcepath="/Users/gcr/.gradle/caches/modules-2/files-2.1/org.eclipse.jdt/org.eclipse.jdt.launching/3.22.0/e1e1194e6473cefdb7ecaece29faff7268e2dbac/org.eclipse.jdt.launching-3.22.0-sources.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/gcr/.m2/repository/org/apache/logging/log4j/log4j-core/2.19.0/log4j-core-2.19.0.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/gcr/.m2/repository/org/hdrhistogram/HdrHistogram/2.1.12/HdrHistogram-2.1.12.jar" sourcepath="/Users/gcr/.m2/repository/org/hdrhistogram/HdrHistogram/2.1.12/HdrHistogram-2.1.12-sources.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/gcr/.gradle/caches/modules-2/files-2.1/org.apache.commons/commons-configuration2/2.10.1/2b681b3bcddeaa5bf5c2a2939cd77e2f9ad6efda/commons-configuration2-2.10.1.jar" sourcepath="/Users/gcr/.gradle/caches/modules-2/files-2.1/org.apache.commons/commons-configuration2/2.10.1/9857337eb462073b07af85ad13a97f7f982e9889/commons-configuration2-2.10.1-sources.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/gcr/.gradle/caches/modules-2/files-2.1/org.eclipse.jdt/org.eclipse.jdt.core/3.38.0/2c337e575d24e07be6ace62b95796e854f6306ce/org.eclipse.jdt.core-3.38.0.jar" sourcepath="/Users/gcr/.gradle/caches/modules-2/files-2.1/org.eclipse.jdt/org.eclipse.jdt.core/3.38.0/3940976f1a7065ade2e6854af9e75a727e311b63/org.eclipse.jdt.core-3.38.0-sources.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/gcr/.gradle/caches/modules-2/files-2.1/org.eclipse.platform/org.eclipse.core.contenttype/3.9.400/f2044c91eecf01f147ea6b99dedd2dc7324750f4/org.eclipse.core.contenttype-3.9.400.jar" sourcepath="/Users/gcr/.gradle/caches/modules-2/files-2.1/org.eclipse.platform/org.eclipse.core.contenttype/3.9.400/181946ba1e404a3a184e88b9fb2ddea1d34cb1f3/org.eclipse.core.contenttype-3.9.400-sources.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/gcr/.gradle/caches/modules-2/files-2.1/org.eclipse.platform/org.eclipse.core.resources/3.20.200/184d474310de28db40377b2fcbae60b9f284ba58/org.eclipse.core.resources-3.20.200.jar" sourcepath="/Users/gcr/.gradle/caches/modules-2/files-2.1/org.eclipse.platform/org.eclipse.core.resources/3.20.200/6f77cd5e665a1bcaf8bc9ae226b0a488772eee5c/org.eclipse.core.resources-3.20.200-sources.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/gcr/.gradle/caches/modules-2/files-2.1/org.eclipse.platform/org.eclipse.core.variables/3.6.400/165da014952c6e8742df7048b1223d0592c71a1d/org.eclipse.core.variables-3.6.400.jar" sourcepath="/Users/gcr/.gradle/caches/modules-2/files-2.1/org.eclipse.platform/org.eclipse.core.variables/3.6.400/7c00bf4ab7eb0b5f44e8225605aaf30ec3768de4/org.eclipse.core.variables-3.6.400-sources.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/gcr/.gradle/caches/modules-2/files-2.1/io.netty/netty-transport/4.1.105.Final/5184e1308ed7d853d7061b4e21e47e8de43a28df/netty-transport-4.1.105.Final.jar" sourcepath="/Users/gcr/.gradle/caches/modules-2/files-2.1/io.netty/netty-transport/4.1.105.Final/5ae3f6853add12183963130c4cff102a123c83b5/netty-transport-4.1.105.Final-sources.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/gcr/.gradle/caches/modules-2/files-2.1/org.eclipse.emf/org.eclipse.emf.ecore/2.36.0/dd0b967aee9f9b631c2d068bd0ead6b96c6be466/org.eclipse.emf.ecore-2.36.0.jar" sourcepath="/Users/gcr/.gradle/caches/modules-2/files-2.1/org.eclipse.emf/org.eclipse.emf.ecore/2.36.0/9c9787bc232679bf8e2adac689612e13dae1207d/org.eclipse.emf.ecore-2.36.0-sources.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/gcr/.m2/repository/org/hl7/fhir/d4m.acc.query/0.0.1/d4m.acc.query-0.0.1.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/gcr/.gradle/caches/modules-2/files-2.1/org.eclipse.xtend/org.eclipse.xtend.lib/2.39.0/8978afcd34b2cc866f41f79fbd538a73a19a8563/org.eclipse.xtend.lib-2.39.0.jar" sourcepath="/Users/gcr/.gradle/caches/modules-2/files-2.1/org.eclipse.xtend/org.eclipse.xtend.lib/2.39.0/66ab5925c53cc9dcda574872dfa5157c73d65368/org.eclipse.xtend.lib-2.39.0-sources.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/gcr/.gradle/caches/modules-2/files-2.1/org.eclipse.emf/org.eclipse.emf.ecore.xmi/2.37.0/5491bb83af1f49f1cfd7dedacbfeea4486a8b0b0/org.eclipse.emf.ecore.xmi-2.37.0.jar" sourcepath="/Users/gcr/.gradle/caches/modules-2/files-2.1/org.eclipse.emf/org.eclipse.emf.ecore.xmi/2.37.0/ec79dc685fd687e7f01f6e88b467b162c47c4d88/org.eclipse.emf.ecore.xmi-2.37.0-sources.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/gcr/.m2/repository/org/apache/yetus/audience-annotations/0.12.0/audience-annotations-0.12.0.jar" sourcepath="/Users/gcr/.m2/repository/org/apache/yetus/audience-annotations/0.12.0/audience-annotations-0.12.0-sources.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/gcr/.gradle/caches/modules-2/files-2.1/io.netty/netty-handler/4.1.105.Final/7e997e63d0a445c4b352bcd38474d50f06f2eaf1/netty-handler-4.1.105.Final.jar" sourcepath="/Users/gcr/.gradle/caches/modules-2/files-2.1/io.netty/netty-handler/4.1.105.Final/16f4166e41616a08fbc5bcc968adb54e3af02e3b/netty-handler-4.1.105.Final-sources.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/gcr/.gradle/caches/modules-2/files-2.1/org.osgi/org.osgi.service.prefs/1.1.2/44351fdfb119ee920394c1a27c938288c93c03c8/org.osgi.service.prefs-1.1.2.jar" sourcepath="/Users/gcr/.gradle/caches/modules-2/files-2.1/org.osgi/org.osgi.service.prefs/1.1.2/533cc195a4ef0d967343d50c315a4a75b0406b16/org.osgi.service.prefs-1.1.2-sources.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/gcr/.gradle/caches/modules-2/files-2.1/org.eclipse.platform/org.eclipse.equinox.preferences/3.11.100/3a2760a36d484a465644c986eeb3bfb3ba616849/org.eclipse.equinox.preferences-3.11.100.jar" sourcepath="/Users/gcr/.gradle/caches/modules-2/files-2.1/org.eclipse.platform/org.eclipse.equinox.preferences/3.11.100/19213f2ec25fabbb44e56f5a30a0b678164076bc/org.eclipse.equinox.preferences-3.11.100-sources.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/gcr/.gradle/caches/modules-2/files-2.1/io.netty/netty-transport-native-unix-common/4.1.105.Final/8bb8ab3a8f1e730c6e7d1d1cf8fc24221eacc6cd/netty-transport-native-unix-common-4.1.105.Final.jar" sourcepath="/Users/gcr/.gradle/caches/modules-2/files-2.1/io.netty/netty-transport-native-unix-common/4.1.105.Final/4363ec009a7fed09aeed8347bcf3efc167f3d557/netty-transport-native-unix-common-4.1.105.Final-sources.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/gcr/.gradle/caches/modules-2/files-2.1/io.opentelemetry/opentelemetry-context/1.34.1/3fcc87f3d810ce49d865ee54b40831559c5e129b/opentelemetry-context-1.34.1.jar" sourcepath="/Users/gcr/.gradle/caches/modules-2/files-2.1/io.opentelemetry/opentelemetry-context/1.34.1/2a5870c26f7aa988f93e3c91c1715cee356c421/opentelemetry-context-1.34.1-sources.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/gcr/.gradle/caches/modules-2/files-2.1/org.apache.commons/commons-lang3/3.14.0/1ed471194b02f2c6cb734a0cd6f6f107c673afae/commons-lang3-3.14.0.jar" sourcepath="/Users/gcr/.gradle/caches/modules-2/files-2.1/org.apache.commons/commons-lang3/3.14.0/9ef3e18356f4ac30b15bfa48c02a7f54b51af382/commons-lang3-3.14.0-sources.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/gcr/.gradle/caches/modules-2/files-2.1/io.netty/netty-tcnative-boringssl-static/2.0.61.Final/944722ba2883fe5825a0c6b38dc727d7151a9371/netty-tcnative-boringssl-static-2.0.61.Final.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/gcr/.gradle/caches/modules-2/files-2.1/org.eclipse.platform/org.eclipse.text/3.14.100/71492a3ffcf7480452e7b15ff97706109f216dd/org.eclipse.text-3.14.100.jar" sourcepath="/Users/gcr/.gradle/caches/modules-2/files-2.1/org.eclipse.platform/org.eclipse.text/3.14.100/e9213daee305d9217d1f7a2cafc0d542626cc342/org.eclipse.text-3.14.100-sources.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/gcr/.gradle/caches/modules-2/files-2.1/org.eclipse.xtend/org.eclipse.xtend.lib.macro/2.39.0/a0a87ecaa7777c3fc172cba318ff584788578b35/org.eclipse.xtend.lib.macro-2.39.0.jar" sourcepath="/Users/gcr/.gradle/caches/modules-2/files-2.1/org.eclipse.xtend/org.eclipse.xtend.lib.macro/2.39.0/8f12bf6e1467c33d80d53df49af1ced1e5fad497/org.eclipse.xtend.lib.macro-2.39.0-sources.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/gcr/.gradle/caches/modules-2/files-2.1/org.eclipse.xtext/org.eclipse.xtext.xbase.lib/2.39.0/90556aad72d66c9c9e4700f77bbff13276b81de0/org.eclipse.xtext.xbase.lib-2.39.0.jar" sourcepath="/Users/gcr/.gradle/caches/modules-2/files-2.1/org.eclipse.xtext/org.eclipse.xtext.xbase.lib/2.39.0/1789e5730c51ced544ccbbaddbdca3bbeee4629d/org.eclipse.xtext.xbase.lib-2.39.0-sources.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/gcr/.gradle/caches/modules-2/files-2.1/org.eclipse.xtext/org.eclipse.xtext/2.39.0/4e3880949f02a2877b7cf63ef61c74e9542e36b2/org.eclipse.xtext-2.39.0.jar" sourcepath="/Users/gcr/.gradle/caches/modules-2/files-2.1/org.eclipse.xtext/org.eclipse.xtext/2.39.0/c46efded3d91583f00126a316a0a1de1bb349c49/org.eclipse.xtext-2.39.0-sources.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/gcr/.gradle/caches/modules-2/files-2.1/jakarta.inject/jakarta.inject-api/2.0.1/4c28afe1991a941d7702fe1362c365f0a8641d1e/jakarta.inject-api-2.0.1.jar" sourcepath="/Users/gcr/.gradle/caches/modules-2/files-2.1/jakarta.inject/jakarta.inject-api/2.0.1/569d6c5f18d6ff83c82152d1870cf0faf830c594/jakarta.inject-api-2.0.1-sources.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/gcr/.gradle/caches/modules-2/files-2.1/org.eclipse.platform/org.eclipse.debug.core/3.21.400/59db501f16559238bc13c53a57b44a839e85334/org.eclipse.debug.core-3.21.400.jar" sourcepath="/Users/gcr/.gradle/caches/modules-2/files-2.1/org.eclipse.platform/org.eclipse.debug.core/3.21.400/fec60cad5ecb8b4929b4b9e2cd8ca2dae91f67d2/org.eclipse.debug.core-3.21.400-sources.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/gcr/.gradle/caches/modules-2/files-2.1/commons-logging/commons-logging/1.3.3/580ad1a4f34876c4f964c083361de31b3d60be68/commons-logging-1.3.3.jar" sourcepath="/Users/gcr/.gradle/caches/modules-2/files-2.1/commons-logging/commons-logging/1.3.3/c5b9980056fe50e75c73f1ceeb1042646d494ed8/commons-logging-1.3.3-sources.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/gcr/.m2/repository/org/antlr/antlr-runtime/3.2/antlr-runtime-3.2.jar" sourcepath="/Users/gcr/.m2/repository/org/antlr/antlr-runtime/3.2/antlr-runtime-3.2-sources.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/gcr/.gradle/caches/modules-2/files-2.1/org.eclipse.emf/org.eclipse.emf.codegen.ecore/2.40.0/d7b198e7a3621ac751be6852c2c8595c97c7ae8f/org.eclipse.emf.codegen.ecore-2.40.0.jar" sourcepath="/Users/gcr/.gradle/caches/modules-2/files-2.1/org.eclipse.emf/org.eclipse.emf.codegen.ecore/2.40.0/e426fd0e0bf3962fdf6372b4f27791cd09833103/org.eclipse.emf.codegen.ecore-2.40.0-sources.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/gcr/.gradle/caches/modules-2/files-2.1/org.apache.accumulo/accumulo-core/2.1.3/16ce47b778c418e5628bb66d5a64e6fe442a3599/accumulo-core-2.1.3.jar" sourcepath="/Users/gcr/.gradle/caches/modules-2/files-2.1/org.apache.accumulo/accumulo-core/2.1.3/e8f3fc5b8880b46109c94950d02e59fb6ff0b38/accumulo-core-2.1.3-sources.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/gcr/.gradle/caches/modules-2/files-2.1/com.google.j2objc/j2objc-annotations/3.0.0/7399e65dd7e9ff3404f4535b2f017093bdb134c7/j2objc-annotations-3.0.0.jar" sourcepath="/Users/gcr/.gradle/caches/modules-2/files-2.1/com.google.j2objc/j2objc-annotations/3.0.0/e6e870c6faf70867a723848b036607cd7d389621/j2objc-annotations-3.0.0-sources.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/gcr/.gradle/caches/modules-2/files-2.1/io.netty/netty-common/4.1.105.Final/8438fc1de4c10301bb53ceb49ed8db74bd40cc2c/netty-common-4.1.105.Final.jar" sourcepath="/Users/gcr/.gradle/caches/modules-2/files-2.1/io.netty/netty-common/4.1.105.Final/e9bed26e0d27437de6837bd3822aad74288db625/netty-common-4.1.105.Final-sources.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/gcr/.m2/repository/org/xerial/snappy/snappy-java/1.1.8.2/snappy-java-1.1.8.2.jar" sourcepath="/Users/gcr/.m2/repository/org/xerial/snappy/snappy-java/1.1.8.2/snappy-java-1.1.8.2-sources.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/gcr/.gradle/caches/modules-2/files-2.1/io.netty/netty-buffer/4.1.105.Final/c1c1b4d2c89d2f74c80a2701c124ecfde1ecf067/netty-buffer-4.1.105.Final.jar" sourcepath="/Users/gcr/.gradle/caches/modules-2/files-2.1/io.netty/netty-buffer/4.1.105.Final/e31eafd1d25ff0d97f9fb2c4394bff70df92592e/netty-buffer-4.1.105.Final-sources.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/gcr/.m2/repository/org/hl7/fhir/fhir.emf/4.0.1/fhir.emf-4.0.1.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/gcr/.m2/repository/org/apache/datasketches/datasketches-memory/2.2.0/datasketches-memory-2.2.0.jar" sourcepath="/Users/gcr/.m2/repository/org/apache/datasketches/datasketches-memory/2.2.0/datasketches-memory-2.2.0-sources.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/gcr/.gradle/caches/modules-2/files-2.1/org.eclipse.platform/org.eclipse.equinox.registry/3.12.100/cb02adada5f812abc4269890c7339db860ad3f05/org.eclipse.equinox.registry-3.12.100.jar" sourcepath="/Users/gcr/.gradle/caches/modules-2/files-2.1/org.eclipse.platform/org.eclipse.equinox.registry/3.12.100/6033cbaf5f9a126b7504a23dac85bbfd2c9567cc/org.eclipse.equinox.registry-3.12.100-sources.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/gcr/.m2/repository/com/google/code/gson/gson/2.10.1/gson-2.10.1.jar" sourcepath="/Users/gcr/.m2/repository/com/google/code/gson/gson/2.10.1/gson-2.10.1-sources.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/gcr/.m2/repository/aopalliance/aopalliance/1.0/aopalliance-1.0.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/gcr/.gradle/caches/modules-2/files-2.1/org.eclipse.emf/org.eclipse.emf.ecore/2.38.0/fb5551d17e8093dba1bfb11c00a1a861b18763d8/org.eclipse.emf.ecore-2.38.0.jar" sourcepath="/Users/gcr/.gradle/caches/modules-2/files-2.1/org.eclipse.emf/org.eclipse.emf.ecore/2.38.0/d5de564c56a6221381b50eb41c28bc1b345baff7/org.eclipse.emf.ecore-2.38.0-sources.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/gcr/.m2/repository/com/beust/jcommander/1.82/jcommander-1.82.jar" sourcepath="/Users/gcr/.m2/repository/com/beust/jcommander/1.82/jcommander-1.82-sources.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/gcr/.gradle/caches/modules-2/files-2.1/org.slf4j/slf4j-api/2.0.12/48f109a2a6d8f446c794f3e3fa0d86df0cdfa312/slf4j-api-2.0.12.jar" sourcepath="/Users/gcr/.gradle/caches/modules-2/files-2.1/org.slf4j/slf4j-api/2.0.12/c2824e780c88689134cb99fb33c8a4ed3de0f406/slf4j-api-2.0.12-sources.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/gcr/.gradle/caches/modules-2/files-2.1/com.google.guava/failureaccess/1.0.3/aeaffd00d57023a2c947393ed251f0354f0985fc/failureaccess-1.0.3.jar" sourcepath="/Users/gcr/.gradle/caches/modules-2/files-2.1/com.google.guava/failureaccess/1.0.3/18ed910a9966320b5ccfdfc3dbabbd1afd3d40e0/failureaccess-1.0.3-sources.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/gcr/.gradle/caches/modules-2/files-2.1/io.netty/netty-transport-native-epoll/4.1.105.Final/8d20e17cff9ec1aaa3bb133ae7cb339c991bc105/netty-transport-native-epoll-4.1.105.Final-linux-x86_64.jar" sourcepath="/Users/gcr/.gradle/caches/modules-2/files-2.1/io.netty/netty-transport-native-epoll/4.1.105.Final/d85e3461d5f5f92ebb6e625adb8a9c9b63952672/netty-transport-native-epoll-4.1.105.Final-sources.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/gcr/.gradle/caches/modules-2/files-2.1/org.eclipse.platform/org.eclipse.equinox.app/1.7.100/5c54082aa486d629fab860d377337425bba6551e/org.eclipse.equinox.app-1.7.100.jar" sourcepath="/Users/gcr/.gradle/caches/modules-2/files-2.1/org.eclipse.platform/org.eclipse.equinox.app/1.7.100/eb0967d95016bcaf6ea9f0aec2aca3957713beac/org.eclipse.equinox.app-1.7.100-sources.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/gcr/.gradle/caches/modules-2/files-2.1/org.eclipse.platform/org.eclipse.core.commands/3.12.100/821860f6547b8cfffc9e20f6af61ac8cf49ac413/org.eclipse.core.commands-3.12.100.jar" sourcepath="/Users/gcr/.gradle/caches/modules-2/files-2.1/org.eclipse.platform/org.eclipse.core.commands/3.12.100/ac29375aa1853fc166cc629b78bd5c9083cf54b0/org.eclipse.core.commands-3.12.100-sources.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/gcr/.m2/repository/org/apache/commons/commons-collections4/4.4/commons-collections4-4.4.jar" sourcepath="/Users/gcr/.m2/repository/org/apache/commons/commons-collections4/4.4/commons-collections4-4.4-sources.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/gcr/.m2/repository/org/latencyutils/LatencyUtils/2.0.3/LatencyUtils-2.0.3.jar" sourcepath="/Users/gcr/.m2/repository/org/latencyutils/LatencyUtils/2.0.3/LatencyUtils-2.0.3-sources.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/gcr/.gradle/caches/modules-2/files-2.1/org.apache.logging.log4j/log4j-api/2.23.1/9c15c29c526d9c6783049c0a77722693c66706e1/log4j-api-2.23.1.jar" sourcepath="/Users/gcr/.gradle/caches/modules-2/files-2.1/org.apache.logging.log4j/log4j-api/2.23.1/b504efc545603fa3364ae397fe733cb9f527e67e/log4j-api-2.23.1-sources.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/gcr/.gradle/caches/modules-2/files-2.1/org.eclipse.platform/org.eclipse.equinox.common/3.19.100/553c3c7f4561044c4333cc76e98607aff185a6eb/org.eclipse.equinox.common-3.19.100.jar" sourcepath="/Users/gcr/.gradle/caches/modules-2/files-2.1/org.eclipse.platform/org.eclipse.equinox.common/3.19.100/e0baf9f99377ef98585ef80a46b98e7cf9c406fa/org.eclipse.equinox.common-3.19.100-sources.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/gcr/.gradle/caches/modules-2/files-2.1/org.eclipse.xtext/org.eclipse.xtext.util/2.39.0/6a8f9073d668c25a7c8310934eac19a2695e39b9/org.eclipse.xtext.util-2.39.0.jar" sourcepath="/Users/gcr/.gradle/caches/modules-2/files-2.1/org.eclipse.xtext/org.eclipse.xtext.util/2.39.0/5f27c3d532f791b8a0d0d23bb35eec2435a9aeff/org.eclipse.xtext.util-2.39.0-sources.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/gcr/.gradle/caches/modules-2/files-2.1/org.springframework/spring-aop/6.1.5/a4f596bd3c55b6cec93f0e2e7245dd0bab8afec3/spring-aop-6.1.5.jar" sourcepath="/Users/gcr/.gradle/caches/modules-2/files-2.1/org.springframework/spring-aop/6.1.5/e19b2e61ae1cfabdda0fbf0c69f8b148002e24f6/spring-aop-6.1.5-sources.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/gcr/.m2/repository/org/apache/thrift/libthrift/0.17.0/libthrift-0.17.0.jar" sourcepath="/Users/gcr/.m2/repository/org/apache/thrift/libthrift/0.17.0/libthrift-0.17.0-sources.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/gcr/.m2/repository/org/apache/logging/log4j/log4j-slf4j-impl/2.17.1/log4j-slf4j-impl-2.17.1.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/gcr/.gradle/caches/modules-2/files-2.1/org.apache.logging.log4j/log4j-1.2-api/2.23.1/f733b3c818352b0735cb59ca7987e2ce7848ee15/log4j-1.2-api-2.23.1.jar" sourcepath="/Users/gcr/.gradle/caches/modules-2/files-2.1/org.apache.logging.log4j/log4j-1.2-api/2.23.1/45089ee126704ea998c7a065d975d2ebadbfd21b/log4j-1.2-api-2.23.1-sources.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/gcr/.m2/repository/com/google/protobuf/protobuf-java/3.22.0/protobuf-java-3.22.0.jar" sourcepath="/Users/gcr/.m2/repository/com/google/protobuf/protobuf-java/3.22.0/protobuf-java-3.22.0-sources.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/gcr/.gradle/caches/modules-2/files-2.1/io.micrometer/micrometer-core/1.12.2/ad701a658e92a3122ee4b2418261daa6821e5b9d/micrometer-core-1.12.2.jar" sourcepath="/Users/gcr/.gradle/caches/modules-2/files-2.1/io.micrometer/micrometer-core/1.12.2/d530c9ac6368b535adf91050e1c1a873016778c3/micrometer-core-1.12.2-sources.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/gcr/.gradle/caches/modules-2/files-2.1/io.netty/netty-transport-classes-epoll/4.1.105.Final/e006d3b0cfd5b8133c9fcebfa05d9ae80a721e80/netty-transport-classes-epoll-4.1.105.Final.jar" sourcepath="/Users/gcr/.gradle/caches/modules-2/files-2.1/io.netty/netty-transport-classes-epoll/4.1.105.Final/756321aa80d679191837d6c256a1d4e0fb2dce08/netty-transport-classes-epoll-4.1.105.Final-sources.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/gcr/.gradle/caches/modules-2/files-2.1/org.apache.accumulo/accumulo-start/2.1.3/c749c67fc0f8288826fba371f75a3bd8ca43c265/accumulo-start-2.1.3.jar" sourcepath="/Users/gcr/.gradle/caches/modules-2/files-2.1/org.apache.accumulo/accumulo-start/2.1.3/250f390c95898c47c45bd6fa6ad055916b007168/accumulo-start-2.1.3-sources.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/gcr/.gradle/caches/modules-2/files-2.1/org.eclipse.emf/org.eclipse.emf.codegen/2.26.0/1fb4e2c97415a4dc3977faae26b91d9ad1c063cd/org.eclipse.emf.codegen-2.26.0.jar" sourcepath="/Users/gcr/.gradle/caches/modules-2/files-2.1/org.eclipse.emf/org.eclipse.emf.codegen/2.26.0/9079a871ff0e557322871102c75d122af7b1d5e0/org.eclipse.emf.codegen-2.26.0-sources.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/gcr/.gradle/caches/modules-2/files-2.1/org.springframework/spring-context/6.1.5/735d1bd7372d7c53e7b31b4a9c980ce2e0b26424/spring-context-6.1.5.jar" sourcepath="/Users/gcr/.gradle/caches/modules-2/files-2.1/org.springframework/spring-context/6.1.5/b59ba94ab89f770cfdb753318d20b19ce5957ec3/spring-context-6.1.5-sources.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/gcr/.m2/repository/com/google/code/findbugs/jsr305/3.0.2/jsr305-3.0.2.jar" sourcepath="/Users/gcr/.m2/repository/com/google/code/findbugs/jsr305/3.0.2/jsr305-3.0.2-sources.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/gcr/.gradle/caches/modules-2/files-2.1/io.micrometer/micrometer-commons/1.12.4/a57f10c78956b38087f97beae66cf14cb8b08d34/micrometer-commons-1.12.4.jar" sourcepath="/Users/gcr/.gradle/caches/modules-2/files-2.1/io.micrometer/micrometer-commons/1.12.4/6b3e7bea8dbf8cc15e3312643d09396b14b10501/micrometer-commons-1.12.4-sources.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/gcr/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-databind/2.16.1/2a16efeb840c45af1e2f31753dfe76795278b73/jackson-databind-2.16.1.jar" sourcepath="/Users/gcr/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-databind/2.16.1/49d81b4832bc388e38901b9d6cf0f8a170820849/jackson-databind-2.16.1-sources.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/gcr/.m2/repository/org/apache/hadoop/hadoop-client-api/3.3.6/hadoop-client-api-3.3.6.jar" sourcepath="/Users/gcr/.m2/repository/org/apache/hadoop/hadoop-client-api/3.3.6/hadoop-client-api-3.3.6-sources.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/gcr/.gradle/caches/modules-2/files-2.1/org.eclipse.emf/org.eclipse.emf.ecore.xmi/2.38.0/185f8239031b16135ff32f829452cdd712816ae4/org.eclipse.emf.ecore.xmi-2.38.0.jar" sourcepath="/Users/gcr/.gradle/caches/modules-2/files-2.1/org.eclipse.emf/org.eclipse.emf.ecore.xmi/2.38.0/34ee13d42b4ec4cee16be9824b3dcbdedb50d56/org.eclipse.emf.ecore.xmi-2.38.0-sources.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/gcr/.gradle/caches/modules-2/files-2.1/org.springframework/spring-core/6.1.5/6dae1b06ffacbb9abab636be2dbc6acd3b6e5d68/spring-core-6.1.5.jar" sourcepath="/Users/gcr/.gradle/caches/modules-2/files-2.1/org.springframework/spring-core/6.1.5/c8e88158ca280eb90b9deb81cbdfabc4a7e37241/spring-core-6.1.5-sources.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/gcr/.gradle/caches/modules-2/files-2.1/io.opentelemetry/opentelemetry-api/1.34.1/b4aea155f6d6b1032eba85378564431cfd86f562/opentelemetry-api-1.34.1.jar" sourcepath="/Users/gcr/.gradle/caches/modules-2/files-2.1/io.opentelemetry/opentelemetry-api/1.34.1/bead663dbbcb57efc04355425b24a04b7e469718/opentelemetry-api-1.34.1-sources.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/gcr/.gradle/caches/modules-2/files-2.1/org.springframework/spring-beans/6.1.5/9ae967f467281c9bb977585ef4d5ea7351704d60/spring-beans-6.1.5.jar" sourcepath="/Users/gcr/.gradle/caches/modules-2/files-2.1/org.springframework/spring-beans/6.1.5/b2e74864b9aa6dd66edc408c3faa0949a5354215/spring-beans-6.1.5-sources.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/gcr/.m2/repository/org/eclipse/jdt/org.eclipse.jdt.launching.macosx/3.6.300/org.eclipse.jdt.launching.macosx-3.6.300.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/gcr/.gradle/caches/modules-2/files-2.1/com.github.ben-manes.caffeine/caffeine/3.1.8/24795585df8afaf70a2cd534786904ea5889c047/caffeine-3.1.8.jar" sourcepath="/Users/gcr/.gradle/caches/modules-2/files-2.1/com.github.ben-manes.caffeine/caffeine/3.1.8/352209f02df83046de6ebfd647b22d726ca3a954/caffeine-3.1.8-sources.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/gcr/.m2/repository/org/osgi/osgi.annotation/8.0.1/osgi.annotation-8.0.1.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/gcr/.m2/repository/ch/qos/reload4j/reload4j/1.2.26/reload4j-1.2.26.jar" sourcepath="/Users/gcr/.m2/repository/ch/qos/reload4j/reload4j/1.2.26/reload4j-1.2.26-sources.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/gcr/.m2/repository/ch/qos/logback/logback-core/1.4.11/logback-core-1.4.11.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/gcr/.gradle/caches/modules-2/files-2.1/org.springframework/spring-expression/6.1.5/7e21cb1c6bbef1509e12d485b75ffc61278d9fa7/spring-expression-6.1.5.jar" sourcepath="/Users/gcr/.gradle/caches/modules-2/files-2.1/org.springframework/spring-expression/6.1.5/73d5222943126f30b3c9c4538efc99f2a64893be/spring-expression-6.1.5-sources.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/gcr/.m2/repository/org/apache/commons/commons-math3/3.6.1/commons-math3-3.6.1.jar" sourcepath="/Users/gcr/.m2/repository/org/apache/commons/commons-math3/3.6.1/commons-math3-3.6.1-sources.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/gcr/.gradle/caches/modules-2/files-2.1/io.netty/netty-tcnative-classes/2.0.61.Final/4c6ae851ed97921bc6c6b64e019c2b039f49131a/netty-tcnative-classes-2.0.61.Final.jar" sourcepath="/Users/gcr/.gradle/caches/modules-2/files-2.1/io.netty/netty-tcnative-classes/2.0.61.Final/27742406855cfcad2ed35dccbadb17fc0ebf1ee6/netty-tcnative-classes-2.0.61.Final-sources.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/gcr/.gradle/caches/modules-2/files-2.1/com.google.inject/guice/7.0.0/ccc518677b9367d45f99dfa592c9b039f07687d3/guice-7.0.0.jar" sourcepath="/Users/gcr/.gradle/caches/modules-2/files-2.1/com.google.inject/guice/7.0.0/386789ff7ba84553eb965eecee39c5a3ee6454d/guice-7.0.0-sources.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/gcr/.gradle/caches/modules-2/files-2.1/org.eclipse.emf/org.eclipse.emf.common/2.30.0/28e02b110df989bbd8715f753d84e00fa9335aa0/org.eclipse.emf.common-2.30.0.jar" sourcepath="/Users/gcr/.gradle/caches/modules-2/files-2.1/org.eclipse.emf/org.eclipse.emf.common/2.30.0/b4534be1c238c2398f08652a39b290c9aba830e9/org.eclipse.emf.common-2.30.0-sources.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/gcr/.m2/repository/ch/qos/logback/logback-classic/1.4.11/logback-classic-1.4.11.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/gcr/.gradle/caches/modules-2/files-2.1/commons-io/commons-io/2.15.1/f11560da189ab563a5c8e351941415430e9304ea/commons-io-2.15.1.jar" sourcepath="/Users/gcr/.gradle/caches/modules-2/files-2.1/commons-io/commons-io/2.15.1/f23737700ceaddc75169d994c7d9c9a2e5dddf39/commons-io-2.15.1-sources.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/gcr/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-annotations/2.16.1/fd441d574a71e7d10a4f73de6609f881d8cdfeec/jackson-annotations-2.16.1.jar" sourcepath="/Users/gcr/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-annotations/2.16.1/980f63c6ea050aca8c9a47f7643fb183b5d7143c/jackson-annotations-2.16.1-sources.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/gcr/.gradle/caches/modules-2/files-2.1/org.eclipse.platform/org.eclipse.core.runtime/3.31.100/112c1db21e04080fd90194a40b0eaa0f8e4f055f/org.eclipse.core.runtime-3.31.100.jar" sourcepath="/Users/gcr/.gradle/caches/modules-2/files-2.1/org.eclipse.platform/org.eclipse.core.runtime/3.31.100/fabe96cf5a8240a064ade8d044576a4e053b0c3d/org.eclipse.core.runtime-3.31.100-sources.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/gcr/.gradle/caches/modules-2/files-2.1/org.eclipse.platform/org.eclipse.core.expressions/3.9.400/5c29a8b92d6ae9b9d5f70ef1db19cec2c7bb0688/org.eclipse.core.expressions-3.9.400.jar" sourcepath="/Users/gcr/.gradle/caches/modules-2/files-2.1/org.eclipse.platform/org.eclipse.core.expressions/3.9.400/ea26243178a4cb3cb8d2854e8f67a96c06a68a06/org.eclipse.core.expressions-3.9.400-sources.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/gcr/.gradle/caches/modules-2/files-2.1/org.springframework/spring-jcl/6.1.5/896ae3519327731589c6e77521656b50ae32d5b3/spring-jcl-6.1.5.jar" sourcepath="/Users/gcr/.gradle/caches/modules-2/files-2.1/org.springframework/spring-jcl/6.1.5/aca38b4abeceef801fc0399a0cdcb6f0d9429e1/spring-jcl-6.1.5-sources.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/gcr/.gradle/caches/modules-2/files-2.1/io.netty/netty-resolver/4.1.105.Final/e69687e013ded60f3f9054164e121c2702200711/netty-resolver-4.1.105.Final.jar" sourcepath="/Users/gcr/.gradle/caches/modules-2/files-2.1/io.netty/netty-resolver/4.1.105.Final/9eacfb88031c3523a2ae0df2a8e822daaa6d695c/netty-resolver-4.1.105.Final-sources.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/gcr/.gradle/caches/modules-2/files-2.1/org.eclipse.emf/org.eclipse.emf.common/2.42.0/729466b608fb056caa3326e682ebd68ce45e511d/org.eclipse.emf.common-2.42.0.jar" sourcepath="/Users/gcr/.gradle/caches/modules-2/files-2.1/org.eclipse.emf/org.eclipse.emf.common/2.42.0/c0f36e92e032a83ee7a5470cadd92dfb2e8015f7/org.eclipse.emf.common-2.42.0-sources.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/gcr/.gradle/caches/modules-2/files-2.1/io.micrometer/micrometer-observation/1.12.4/492deebbd9b8ab23f588428f66578e21af266e01/micrometer-observation-1.12.4.jar" sourcepath="/Users/gcr/.gradle/caches/modules-2/files-2.1/io.micrometer/micrometer-observation/1.12.4/c1b03a9323bf73a4f9ddf790182b440b369bb4ae/micrometer-observation-1.12.4-sources.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/gcr/.m2/repository/org/apache/datasketches/datasketches-java/4.1.0/datasketches-java-4.1.0.jar" sourcepath="/Users/gcr/.m2/repository/org/apache/datasketches/datasketches-java/4.1.0/datasketches-java-4.1.0-sources.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/gcr/.gradle/caches/modules-2/files-2.1/org.apache.zookeeper/zookeeper/3.9.2/b6a8d8e3a4cf932cad92e5894c93724c73076333/zookeeper-3.9.2.jar" sourcepath="/Users/gcr/.gradle/caches/modules-2/files-2.1/org.apache.zookeeper/zookeeper/3.9.2/8c0a3e2b6f2baea968ed9ae2d65dc5474be3452c/zookeeper-3.9.2-sources.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/gcr/.m2/repository/org/apache/hadoop/hadoop-client-runtime/3.3.6/hadoop-client-runtime-3.3.6.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/gcr/.gradle/caches/modules-2/files-2.1/org.eclipse.jdt/ecj/3.38.0/86b2e4ab1d6aef91cb21f4d2ec364afb75d05b2c/ecj-3.38.0.jar" sourcepath="/Users/gcr/.gradle/caches/modules-2/files-2.1/org.eclipse.jdt/ecj/3.38.0/768e410fcb977ddbb2876895c7b38dcffbbfe3cb/ecj-3.38.0-sources.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/gcr/.gradle/caches/modules-2/files-2.1/org.apache.zookeeper/zookeeper-jute/3.9.2/d1a2a1a2457edb8a8fc309b86653e38bf45ae5ea/zookeeper-jute-3.9.2.jar" sourcepath="/Users/gcr/.gradle/caches/modules-2/files-2.1/org.apache.zookeeper/zookeeper-jute/3.9.2/5eb667bb5366546004efea5a41bf63c5bf36ae51/zookeeper-jute-3.9.2-sources.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/gcr/.gradle/caches/modules-2/files-2.1/io.netty/netty-codec/4.1.105.Final/4733830b4b2b9111e9bf8136691d07b20027cd51/netty-codec-4.1.105.Final.jar" sourcepath="/Users/gcr/.gradle/caches/modules-2/files-2.1/io.netty/netty-codec/4.1.105.Final/66a9f9b90c85dcafb6311ff2a66871d7218eb180/netty-codec-4.1.105.Final-sources.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/gcr/.m2/repository/com/google/guava/listenablefuture/9999.0-empty-to-avoid-conflict-with-guava/listenablefuture-9999.0-empty-to-avoid-conflict-with-guava.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/gcr/.gradle/caches/modules-2/files-2.1/org.yaml/snakeyaml/2.2/3af797a25458550a16bf89acc8e4ab2b7f2bfce0/snakeyaml-2.2.jar" sourcepath="/Users/gcr/.gradle/caches/modules-2/files-2.1/org.yaml/snakeyaml/2.2/575a7915b847393207642575c139177ac2b2ac23/snakeyaml-2.2-sources.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/gcr/.m2/repository/org/apache/commons/commons-vfs2/2.9.0/commons-vfs2-2.9.0.jar" sourcepath="/Users/gcr/.m2/repository/org/apache/commons/commons-vfs2/2.9.0/commons-vfs2-2.9.0-sources.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/gcr/.m2/repository/org/apache/logging/log4j/log4j-slf4j2-impl/2.19.0/log4j-slf4j2-impl-2.19.0.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/gcr/.gradle/caches/modules-2/files-2.1/org.apache.commons/commons-text/1.11.0/2bb044b7717ec2eccaf9ea7769c1509054b50e9a/commons-text-1.11.0.jar" sourcepath="/Users/gcr/.gradle/caches/modules-2/files-2.1/org.apache.commons/commons-text/1.11.0/495883e4f3d80c80f15f6a5ae0e2b4a81184a9b5/commons-text-1.11.0-sources.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/gcr/.gradle/caches/modules-2/files-2.1/org.eclipse.platform/org.eclipse.core.jobs/3.15.300/da6a8e7882da50f477071d97d3a6e5f1f845db37/org.eclipse.core.jobs-3.15.300.jar" sourcepath="/Users/gcr/.gradle/caches/modules-2/files-2.1/org.eclipse.platform/org.eclipse.core.jobs/3.15.300/15855bd8d90b77b115247b1bbcecc14bc10828fd/org.eclipse.core.jobs-3.15.300-sources.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/gcr/.gradle/caches/modules-2/files-2.1/org.eclipse.platform/org.eclipse.osgi/3.19.0/7f25804defcfe435632b92ea7b9f93d352e2f65/org.eclipse.osgi-3.19.0.jar" sourcepath="/Users/gcr/.gradle/caches/modules-2/files-2.1/org.eclipse.platform/org.eclipse.osgi/3.19.0/63aa06e926873977f09ca1bf5280176187c3268f/org.eclipse.osgi-3.19.0-sources.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/gcr/.gradle/caches/modules-2/files-2.1/com.google.guava/guava/33.4.8-jre/e70a3268e6cd3e7d458aa15787ce6811c34e96ae/guava-33.4.8-jre.jar" sourcepath="/Users/gcr/.gradle/caches/modules-2/files-2.1/com.google.guava/guava/33.4.8-jre/29e173ce8da3d6b4eaf81cc1f1e502b5285f29f4/guava-33.4.8-jre-sources.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/gcr/.gradle/caches/modules-2/files-2.1/com.google.errorprone/error_prone_annotations/2.36.0/227d4d4957ccc3dc5761bd897e3a0ee587e750a7/error_prone_annotations-2.36.0.jar" sourcepath="/Users/gcr/.gradle/caches/modules-2/files-2.1/com.google.errorprone/error_prone_annotations/2.36.0/2037dc2e9c13c3be8bfc1f346a02832a77372b4a/error_prone_annotations-2.36.0-sources.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/gcr/.gradle/caches/modules-2/files-2.1/org.jspecify/jspecify/1.0.0/7425a601c1c7ec76645a78d22b8c6a627edee507/jspecify-1.0.0.jar" sourcepath="/Users/gcr/.gradle/caches/modules-2/files-2.1/org.jspecify/jspecify/1.0.0/f1a67bbcf2f9f282baf3821046563983f16ca9b2/jspecify-1.0.0-sources.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/gcr/.gradle/caches/modules-2/files-2.1/org.eclipse.platform/org.eclipse.osgi/3.20.0/e90c63e9221145910df6b671ff952ddfd333445c/org.eclipse.osgi-3.20.0.jar" sourcepath="/Users/gcr/.gradle/caches/modules-2/files-2.1/org.eclipse.platform/org.eclipse.osgi/3.20.0/ede1348d3148bded0db3e677250837c2f18119ea/org.eclipse.osgi-3.20.0-sources.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/gcr/.gradle/caches/modules-2/files-2.1/org.checkerframework/checker-qual/3.42.0/638ec33f363a94d41a4f03c3e7d3dcfba64e402d/checker-qual-3.42.0.jar" sourcepath="/Users/gcr/.gradle/caches/modules-2/files-2.1/org.checkerframework/checker-qual/3.42.0/49cc9a760cebbbcd13be06679a224a1ecc85f884/checker-qual-3.42.0-sources.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/gcr/.gradle/caches/modules-2/files-2.1/org.eclipse.jdt/org.eclipse.jdt.debug/3.21.400/7a8d5dbc81768679fcc2917e5613579b1b28169f/org.eclipse.jdt.debug-3.21.400.jar" sourcepath="/Users/gcr/.gradle/caches/modules-2/files-2.1/org.eclipse.jdt/org.eclipse.jdt.debug/3.21.400/4ef3dcce26738513fc67f2a278aa588f429087b/org.eclipse.jdt.debug-3.21.400-sources.jar">
+		<attributes>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/gcr/.gradle/caches/modules-2/files-2.1/org.junit.platform/junit-platform-commons/1.10.0/d533ff2c286eaf963566f92baf5f8a06628d2609/junit-platform-commons-1.10.0.jar" sourcepath="/Users/gcr/.gradle/caches/modules-2/files-2.1/org.junit.platform/junit-platform-commons/1.10.0/74f2f9694d30effa2caff679b9f02ba832cbd1ac/junit-platform-commons-1.10.0-sources.jar">
+		<attributes>
+			<attribute name="test" value="true"/>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/gcr/.gradle/caches/modules-2/files-2.1/org.junit.jupiter/junit-jupiter-api/5.10.0/2fe4ba3d31d5067878e468c96aa039005a9134d3/junit-jupiter-api-5.10.0.jar" sourcepath="/Users/gcr/.gradle/caches/modules-2/files-2.1/org.junit.jupiter/junit-jupiter-api/5.10.0/551bc33910fee1c601da155a77f67f70f66f6a27/junit-jupiter-api-5.10.0-sources.jar">
+		<attributes>
+			<attribute name="test" value="true"/>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/gcr/.gradle/caches/modules-2/files-2.1/org.opentest4j/opentest4j/1.3.0/152ea56b3a72f655d4fd677fc0ef2596c3dd5e6e/opentest4j-1.3.0.jar" sourcepath="/Users/gcr/.gradle/caches/modules-2/files-2.1/org.opentest4j/opentest4j/1.3.0/afb8ff23cffb021c56f333953aebfe6e8818568e/opentest4j-1.3.0-sources.jar">
+		<attributes>
+			<attribute name="test" value="true"/>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/gcr/.gradle/caches/modules-2/files-2.1/org.junit.jupiter/junit-jupiter-engine/5.10.0/90587932d718fc51a48112d33045a18476c542ad/junit-jupiter-engine-5.10.0.jar" sourcepath="/Users/gcr/.gradle/caches/modules-2/files-2.1/org.junit.jupiter/junit-jupiter-engine/5.10.0/4fe7a5334478bc8e93bbcb471e24c0fa13520ea7/junit-jupiter-engine-5.10.0-sources.jar">
+		<attributes>
+			<attribute name="test" value="true"/>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/gcr/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar" sourcepath="/Users/gcr/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2-sources.jar">
+		<attributes>
+			<attribute name="test" value="true"/>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/gcr/.gradle/caches/modules-2/files-2.1/org.junit.jupiter/junit-jupiter/5.10.0/8fea1d9c58b2156f1b998f2f18da04bc9e087f74/junit-jupiter-5.10.0.jar" sourcepath="/Users/gcr/.gradle/caches/modules-2/files-2.1/org.junit.jupiter/junit-jupiter/5.10.0/4e79ee610aff59d79b5f229252ded392b7d48fd1/junit-jupiter-5.10.0-sources.jar">
+		<attributes>
+			<attribute name="test" value="true"/>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/gcr/.gradle/caches/modules-2/files-2.1/org.junit.platform/junit-platform-engine/1.10.0/276c4edcf64fabb5a139fa7b4f99330d7a93b804/junit-platform-engine-1.10.0.jar" sourcepath="/Users/gcr/.gradle/caches/modules-2/files-2.1/org.junit.platform/junit-platform-engine/1.10.0/886c197f5fcfe9eaf0d1dde20aa1bd3abd653f44/junit-platform-engine-1.10.0-sources.jar">
+		<attributes>
+			<attribute name="test" value="true"/>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/gcr/.gradle/caches/modules-2/files-2.1/org.junit.jupiter/junit-jupiter-params/5.10.0/9041c7365495a897a64782ea5a6fdb99dab1814e/junit-jupiter-params-5.10.0.jar" sourcepath="/Users/gcr/.gradle/caches/modules-2/files-2.1/org.junit.jupiter/junit-jupiter-params/5.10.0/6c4fb5ab59bbc63438f3c618d769c4eddd65654/junit-jupiter-params-5.10.0-sources.jar">
+		<attributes>
+			<attribute name="test" value="true"/>
+			<attribute name="gradle.buildServer" value="true"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="output" path="bin/default"/>
 </classpath>

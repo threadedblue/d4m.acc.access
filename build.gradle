@@ -9,15 +9,20 @@ java {
 repositories {
 	mavenLocal()
 	mavenCentral()
+
     flatDir {
 	    dirs 'libs'
     }
 }
 
 dependencies {
-
+	implementation libs.queryDSL
+	implementation libs.guice
+	implementation libs.xtext
 	implementation libs.fhirEmf
-	api libs.graphulo
+	implementation libs.jacksonCore
+	implementation libs.jacksonDatabind
+	implementation libs.jacksonAnnotations
 	implementation libs.accumulo
 	implementation libs.context
 	implementation libs.slf4jAPI

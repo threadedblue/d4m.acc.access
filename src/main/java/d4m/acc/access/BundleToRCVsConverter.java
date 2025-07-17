@@ -6,6 +6,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.databind.JsonNode;
@@ -14,7 +16,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @Component
 public class BundleToRCVsConverter {
 
+	private static final Logger log = LoggerFactory.getLogger(BundleToRCVsConverter.class);
+
     public RCVs fromJson(String jsonString) throws IOException {
+
+        log.trace("fromJson==>{}", 0);
+
         ObjectMapper mapper = new ObjectMapper();
         JsonNode root = mapper.readTree(jsonString);
 
@@ -23,6 +30,9 @@ public class BundleToRCVsConverter {
         List<String> vv = new ArrayList<>();
 
         if (root.has("resourceType") && "Bundle".equals(root.get("resourceType").asText())) {
+
+        log.trace("fromJson==>{}", 1);
+
             JsonNode entries = root.get("entry");
             if (entries != null && entries.isArray()) {
                 for (JsonNode entry : entries) {
@@ -41,6 +51,8 @@ public class BundleToRCVsConverter {
             String rowKey = id;
             flatten("", root, rowKey, resourceType, rr, cc, vv);
         }
+
+        log.trace("fromJson==>{}", 2);
 
         return new RCVs(rr.toArray(new String[0]), cc.toArray(new String[0]), vv.toArray(new String[0]), "FHIR");
     }

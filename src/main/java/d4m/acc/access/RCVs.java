@@ -52,4 +52,8 @@ public class RCVs {
 		bld.append(getFamily());
 		return bld.toString();
 	}
+
+	public int size() {
+		return toString().length();
+	}
 }
