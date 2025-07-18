@@ -23,9 +23,13 @@ import org.apache.accumulo.core.data.Range;
 import org.apache.accumulo.core.data.Value;
 import org.apache.accumulo.core.security.Authorizations;
 import org.apache.hadoop.io.Text;
+import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.xtext.nodemodel.INode;
+import org.eclipse.xtext.parser.IParseResult;
+import org.eclipse.xtext.resource.IResourceServiceProvider;
 import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.resource.XtextResourceSet;
 import org.slf4j.Logger;
@@ -167,12 +171,18 @@ public class AccumuloAccess {
 	}
 
 	public ObjectNode query(D4MRequest qry) {
+
+			log.trace("query=={}", qry.getPayload().toString());
+
 			D4MQuery model = (D4MQuery) parseQuery(qry.getPayload().asText());
+
+			log.debug("model=={}", model);
 			
 			return executeParsedQuery(model, qry.getTableName());
 		}
 
 	public static ObjectNode scanTable(AxisExpr query, String tableName) {
+		log.trace("scanTable=={}", query.toString());
 		List<Range> ranges = new ScanCriteriaBuilder().doSwitch(query);
 		ObjectNode result = JsonNodeFactory.instance.objectNode();
 		ArrayNode rows = result.putArray("rows");
@@ -206,18 +216,57 @@ public class AccumuloAccess {
 		XtextResourceSet resourceSet = injector.getInstance(XtextResourceSet.class);
 		resourceSet.addLoadOption(XtextResource.OPTION_RESOLVE_ALL, Boolean.TRUE);
 
-		// Create an in-memory resource to hold the parsed model
-		Resource resource = resourceSet.createResource(URI.createURI("dummy:/query.d4mq"));
+		IResourceServiceProvider provider = injector.getInstance(IResourceServiceProvider.class);
+		Resource.Factory factory = provider.get(Resource.Factory.class);
+		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap()
+			.put("d4mq", factory);
+
+		Resource resource = resourceSet.createResource(URI.createURI("dummy:/query.qry"));
 		ByteArrayInputStream input = new ByteArrayInputStream(queryString.getBytes(StandardCharsets.UTF_8));
 
 		try {
 			resource.load(input, resourceSet.getLoadOptions());
+			            // Log parse errors if any
+			if (!resource.getErrors().isEmpty()) {
+				log.error("=== Parse Errors ===");
+				for (Resource.Diagnostic diag : resource.getErrors()) {
+					log.error("Line {}, Col {}: {}", diag.getLine(), diag.getColumn(), diag.getMessage());
+				}
+				return null;
+			}
+
+			// Log root EObject
+			EObject model = resource.getContents().get(0);
+			log.debug("Parsed model: {}", model.getClass().getSimpleName());
+
+			TreeIterator<EObject> it = model.eAllContents();
+			while (it.hasNext()) {
+				EObject obj = it.next();
+				log.debug("EObject: {} → {}", obj.eClass().getName(), obj.toString());
+			}
+
+			// Dump grammar nodes if available
+			if (resource instanceof XtextResource) {
+				IParseResult parseResult = ((XtextResource) resource).getParseResult();
+				INode rootNode = parseResult.getRootNode();
+				log.debug("=== Grammar Trace ===");
+				for (INode node : rootNode.getAsTreeIterable()) {
+					String element = node.getGrammarElement() != null ? node.getGrammarElement().toString() : "null";
+					log.debug("Node: {}  [Text: '{}']", element, node.getText().replace("\n", "\\n"));
+				}
+				}
 		} catch (IOException e) {
 			throw new RuntimeException("Failed to parse query", e);
 		}
 
 		// Get the parsed root object
 		EObject eObject = resource.getContents().get(0);
+log.debug("Parsed model type: {}", eObject.getClass().getName());
+TreeIterator<EObject> it = eObject.eAllContents();
+while (it.hasNext()) {
+    EObject child = it.next();
+    log.debug("Child: {} — {}", child.eClass().getName(), child.toString());
+}
 		if (eObject instanceof D4MQuery) {
 			return (D4MQuery) eObject;
 		} else {
