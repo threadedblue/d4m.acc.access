@@ -57,11 +57,34 @@ public class ScanCriteriaBuilder extends D4MQuerySwitch<List<Range>> {
     // Add StartsWithExpr or RegexExpr if needed — for now you can throw if unsupported
     @Override
     public List<Range> caseStartsWithExpr(StartsWithExpr expr) {
-        throw new UnsupportedOperationException("StartsWithExpr not yet supported");
+        List<Range> ranges = new ArrayList<>();
+        String prefix = expr.getPrefix();
+        String end = nextLexicographicString(prefix); // e.g., Pat → Pau
+        Range range = new Range(prefix, true, end, false);
+        ranges.add(range);
+        return ranges;
     }
 
     @Override
     public List<Range> caseRegexExpr(RegexExpr expr) {
-        throw new UnsupportedOperationException("RegexExpr not yet supported");
+        String pattern = expr.getPattern();
+        log.trace("RegexExpr.pattern = {}", pattern);
+
+        // For regex, use full scan range
+        Range range = new Range(); // entire table
+
+        return Collections.singletonList(range);    
     }
+
+	public static String nextLexicographicString(String prefix) {
+		if (prefix == null || prefix.isEmpty()) return prefix;
+		char[] chars = prefix.toCharArray();
+		for (int i = chars.length - 1; i >= 0; i--) {
+			if (chars[i] != Character.MAX_VALUE) {
+				chars[i]++;
+				return new String(chars, 0, i + 1);
+			}
+		}
+    	return prefix; // fallback (should not happen)
+	}
 }
