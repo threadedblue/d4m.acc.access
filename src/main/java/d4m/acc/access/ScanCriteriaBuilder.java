@@ -4,12 +4,18 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import d4m.acc.query.d4MQuery.*;
-import d4m.acc.query.d4MQuery.util.D4MQuerySwitch;
-
 import org.apache.accumulo.core.data.Range;
+import org.apache.hadoop.io.Text;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import d4m.acc.query.d4MQuery.ListExpr;
+import d4m.acc.query.d4MQuery.LiteralExpr;
+import d4m.acc.query.d4MQuery.RangeExpr;
+import d4m.acc.query.d4MQuery.RegexExpr;
+import d4m.acc.query.d4MQuery.RowColWildcard;
+import d4m.acc.query.d4MQuery.StartsWithExpr;
+import d4m.acc.query.d4MQuery.util.D4MQuerySwitch;
 
 public class ScanCriteriaBuilder extends D4MQuerySwitch<List<Range>> { 
     
@@ -17,8 +23,12 @@ public class ScanCriteriaBuilder extends D4MQuerySwitch<List<Range>> {
 
     @Override
     public List<Range> caseLiteralExpr(LiteralExpr expr) {
-        log.trace("caseLiteralExpr=={}", expr.getValue());
-        return List.of(new Range(expr.getValue()));
+        String value = expr.getValue();
+        log.trace("LiteralExpr.value = {}", value);
+
+        Text key = new Text(value);
+        Range range = new Range(key, true, key, true);
+        return Collections.singletonList(range);
     }
 
     @Override

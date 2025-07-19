@@ -184,6 +184,10 @@ public class AccumuloAccess {
 	public static ObjectNode scanTable(AxisExpr query, String tableName) {
 		log.trace("scanTable=={}", query.toString());
 		List<Range> ranges = new ScanCriteriaBuilder().doSwitch(query);
+		for (Range range : ranges) {
+			log.trace("range==Start=={} End=={}", range.getStartKey().toString(), range.getEndKey().toString());
+		}
+		log.trace("ranges size=={}", ranges.size());
 		ObjectNode result = JsonNodeFactory.instance.objectNode();
 		ArrayNode rows = result.putArray("rows");
 
@@ -191,9 +195,7 @@ public class AccumuloAccess {
 			String user = client.whoami();
 			Authorizations auths = client.securityOperations().getUserAuthorizations(user);
 			BatchScanner scanner = client.createBatchScanner(tableName, auths);
-            scanner.fetchColumnFamily(FAMILY); // Fetch the column family or the column qualifier
 			scanner.setRanges(ranges);
-
 			for (Map.Entry<Key, Value> entry : scanner) {
 				ObjectNode row = JsonNodeFactory.instance.objectNode();
 				row.put("row", entry.getKey().getRow().toString());
@@ -201,7 +203,6 @@ public class AccumuloAccess {
 				row.put("val", entry.getValue().toString());
 				rows.add(row);
 			}
-
 			scanner.close();
 		} catch (Exception e) {
 			throw new RuntimeException("Accumulo scan failed", e);
