@@ -30,7 +30,7 @@ public class AccumuloAccessTest {
 		InputStream reader = BundleToRCVsConverterTest.class.getClassLoader().getResourceAsStream("Alicia.json");
 		assertNotNull(reader);
 		BundleToRCVsConverter sut = new BundleToRCVsConverter();
-        AccumuloAccess acc = new AccumuloAccess();
+        BaseService acc = new BaseService();
 		try {
 			String jsonString = new String(reader.readAllBytes(), StandardCharsets.UTF_8);
 			reader.close();
@@ -44,9 +44,9 @@ public class AccumuloAccessTest {
     }
 
     @Test
-    void testCreate() {
+    void v() {
         final String tableName = "rcvs";
-        AccumuloAccess acc = new AccumuloAccess();
+        BaseService acc = new BaseService();
         acc.createTablePair(tableName);
         TableOperations ops = acc.client.tableOperations();
         assertTrue(ops.exists(tableName));

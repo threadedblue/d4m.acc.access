@@ -58,10 +58,10 @@ public class QueryExecutor extends D4MQuerySwitch<ObjectNode> {
         String table = null;
         if (isRowWildcard) {
             table = tableName + "T";
-            return AccumuloAccess.scanTable(colExpr, table);
+            return QueryService.scanTable(colExpr, table);
         } else {
             table = tableName;
-            return AccumuloAccess.scanTable(rowExpr, table);
+            return QueryService.scanTable(rowExpr, table);
         }
     }
 

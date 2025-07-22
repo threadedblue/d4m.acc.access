@@ -249,12 +249,12 @@
 			<attribute name="gradle.buildServer" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="/Users/gcr/.m2/repository/com/google/code/gson/gson/2.10.1/gson-2.10.1.jar" sourcepath="/Users/gcr/.m2/repository/com/google/code/gson/gson/2.10.1/gson-2.10.1-sources.jar">
+	<classpathentry kind="lib" path="/Users/gcr/.m2/repository/aopalliance/aopalliance/1.0/aopalliance-1.0.jar">
 		<attributes>
 			<attribute name="gradle.buildServer" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="/Users/gcr/.m2/repository/aopalliance/aopalliance/1.0/aopalliance-1.0.jar">
+	<classpathentry kind="lib" path="/Users/gcr/.m2/repository/com/google/code/gson/gson/2.10.1/gson-2.10.1.jar" sourcepath="/Users/gcr/.m2/repository/com/google/code/gson/gson/2.10.1/gson-2.10.1-sources.jar">
 		<attributes>
 			<attribute name="gradle.buildServer" value="true"/>
 		</attributes>
