@@ -12,6 +12,15 @@ public class ChunkState {
     private List<Range> ranges;
     private int currentIndex = 0;
 
+    public ChunkState() {}
+
+    public ChunkState(String tableName, String payload, String lastSeenRow, List<Range> ranges) {
+        this.tableName = tableName;
+        this.payload = payload;
+        this.lastSeenRow = lastSeenRow;
+        this.ranges = ranges;
+    }
+
      public String getTableName() {
         return tableName;
     }

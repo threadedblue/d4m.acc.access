@@ -17,9 +17,11 @@ public class QueryExecutor extends D4MQuerySwitch<ObjectNode> {
 	private static final Logger log = LoggerFactory.getLogger(QueryExecutor.class);
 
     private final String tableName;
+    private QueryService svc;
 
-    public QueryExecutor(String tableName) {
+    public QueryExecutor(String tableName, QueryService svc) {
         this.tableName = tableName;
+        this.svc = svc;
     }
 
     @Override
@@ -58,10 +60,10 @@ public class QueryExecutor extends D4MQuerySwitch<ObjectNode> {
         String table = null;
         if (isRowWildcard) {
             table = tableName + "T";
-            return QueryService.scanTable(colExpr, table);
+            return svc.scanTable(colExpr, table);
         } else {
             table = tableName;
-            return QueryService.scanTable(rowExpr, table);
+            return svc.scanTable(rowExpr, table);
         }
     }
 

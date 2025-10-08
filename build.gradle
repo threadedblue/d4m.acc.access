@@ -1,38 +1,33 @@
-group = 'org.hl7.fhir'
-version = '0.0.1'
-
-java {
-    sourceCompatibility = JavaVersion.VERSION_17
-    targetCompatibility = JavaVersion.VERSION_17
-}
-
-repositories {
-	mavenLocal()
-	mavenCentral()
-
-    flatDir {
-	    dirs 'libs'
-    }
-}
 
 dependencies {
-	implementation libs.queryDSL
-	implementation libs.guice
-	implementation libs.xtext
-	implementation libs.fhirEmf
-	implementation libs.jacksonCore
-	implementation libs.jacksonDatabind
-	implementation libs.jacksonAnnotations
-	implementation libs.accumulo
-	implementation libs.context
-	implementation libs.slf4jAPI
-	implementation libs.logbackClassic
+  // Spring annotations needed only to compile the stereotypes
+  compileOnly libs.context          // org.springframework:spring-context
+  testImplementation libs.context   // if tests compile/use Spring types
 
-    testImplementation libs.junitJupiter
-    testImplementation libs.junitJupiterAPI
+  // Your existing deps (trimmed to essentials)
+  implementation libs.emfCommon
+  implementation libs.emfEcore
+  implementation libs.xtext
+  implementation libs.queryDSL
+  implementation libs.jacksonCore
+  implementation libs.jacksonDatabind
+  implementation libs.jacksonAnnotations
+  api libs.accumulo 
+  
+  implementation libs.springStarterDataRedis
+  implementation libs.springSessionDataRedis
+
+  testImplementation libs.junitJupiter
+  testImplementation libs.junitJupiterAPI
+}
+
+
+
+
+tasks.processResources {
+  exclude("logback.xml", "logback-spring.xml")
 }
 
 tasks.named('test') {
 	useJUnitPlatform()
 }
-

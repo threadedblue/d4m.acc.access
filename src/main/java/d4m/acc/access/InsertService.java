@@ -1,7 +1,10 @@
 package d4m.acc.access;
 
 import java.nio.charset.StandardCharsets;
+import java.util.HashMap;
+import java.util.Map;
 
+import org.apache.accumulo.core.client.AccumuloClient;
 import org.apache.accumulo.core.client.BatchWriter;
 import org.apache.accumulo.core.client.MutationsRejectedException;
 import org.apache.accumulo.core.client.TableNotFoundException;
@@ -17,8 +20,8 @@ public class InsertService extends BaseService {
 
 	private static final Logger log = LoggerFactory.getLogger(InsertService.class);
     
-	InsertService() {
-        super();
+	InsertService(AccumuloClient client) {
+        super(client);
 	}
 
  // 	public void insert(RCVs rcvs, String tableName) {
@@ -46,6 +49,7 @@ public class InsertService extends BaseService {
 			insertIntoTable(rcvs.getRows(), rcvs.getCols(), rcvs.getVals(), tableName, rcvs.getFamily());
 			insertIntoTable(rcvs.getCols(), rcvs.getRows(), rcvs.getVals(), tableName + pairDecor, rcvs.getFamily());
 			
+        	bumpDegrees(rcvs.getRows(), rcvs.getCols(), tableName + degreeDecor);
 		} catch (Exception e) {
 			log.error("Failed to insert into table pair", e);
 		}
@@ -64,4 +68,23 @@ public class InsertService extends BaseService {
 			}
 		}
 	}
-}
+
+	private void bumpDegrees(String[] rows, String[] cols, String degreeTable) throws Exception {
+		// Aggregate per vertex so we write a single mutation per vertex
+		Map<String, Integer> delta = new HashMap<>(rows.length * 2);
+		for (int i = 0; i < rows.length; i++) {
+			delta.merge(rows[i], 1, Integer::sum);
+			delta.merge(cols[i], 1, Integer::sum);
+		}
+
+		try (BatchWriter bw = client.createBatchWriter(degreeTable)) {
+			for (Map.Entry<String, Integer> e : delta.entrySet()) {
+				Mutation mutation = new Mutation(e.getKey());
+				// STRING SummingCombiner → write integer as string
+				String inc = Integer.toString(e.getValue());
+				mutation.put(new Text("deg"), new Text("count"), new Value(inc.getBytes(StandardCharsets.UTF_8)));
+				bw.addMutation(mutation);
+			}
+		}
+	}
+}	

@@ -8,6 +8,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.accumulo.core.client.AccumuloClient;
 import org.apache.accumulo.core.client.BatchScanner;
 import org.apache.accumulo.core.data.Key;
 import org.apache.accumulo.core.data.Range;
@@ -46,12 +47,13 @@ import d4m.acc.query.d4MQuery.StartsWithExpr;
 public class QueryService extends BaseService {
     
 	private static final Logger log = LoggerFactory.getLogger(QueryService.class);
+
     public final static int DEFAULT_CHUNK_SIZE = 100;
     public final static int MAX_EXPECTED_SIZE = 100;
     public final static String ZERO_PAD = "%06d";
 
-	QueryService() {
-        super();
+	QueryService(AccumuloClient client) {
+        super(client);
 	}
 
 	public ObjectNode query(D4MRequest qry) {
@@ -65,7 +67,7 @@ public class QueryService extends BaseService {
 			return executeParsedQuery(model, qry.getTableName());
 		}
 
-	public static ObjectNode scanTable(AxisExpr query, String tableName) {
+	public ObjectNode scanTable(AxisExpr query, String tableName) {
 		log.trace("scanTable=={}", query.toString());
 
 		List<Range> initialRanges = new ScanCriteriaBuilder().doSwitch(query);
@@ -168,7 +170,7 @@ while (it.hasNext()) {
 	}
 
 	public ObjectNode executeParsedQuery(D4MQuery model, String tableName) {
-		return new QueryExecutor(tableName).doSwitch(model);
+		return new QueryExecutor(tableName, this).doSwitch(model);
 	}
 
     public static List<Range> buildRanges(String rowOrCol) {

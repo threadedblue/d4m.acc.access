@@ -2,6 +2,7 @@ package d4m.acc.access;
 
 import java.util.SortedSet;
 
+import org.apache.accumulo.core.client.AccumuloClient;
 import org.apache.accumulo.core.client.AccumuloException;
 import org.apache.accumulo.core.client.AccumuloSecurityException;
 import org.apache.accumulo.core.client.TableExistsException;
@@ -16,12 +17,12 @@ public class AdminService extends BaseService {
 
 	private static final Logger log = LoggerFactory.getLogger(AdminService.class);
     
-	AdminService() {
-        super();
+	AdminService(AccumuloClient client) {
+        super(client);
 	}
     	
     public SortedSet<String> listTables() {
-		log.info("list==>");
+		log.info("listTables==>");
 		TableOperations ops = client.tableOperations();
 		return ops.list();
 	}

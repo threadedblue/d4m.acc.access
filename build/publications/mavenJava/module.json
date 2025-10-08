@@ -1,0 +1,145 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "iox.semirings.fhir",
+    "module": "d4m.acc.access",
+    "version": "0.0.1",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "8.6"
+    }
+  },
+  "variants": [
+    {
+      "name": "apiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 17,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api"
+      },
+      "files": [
+        {
+          "name": "d4m.acc.access-0.0.1.jar",
+          "url": "d4m.acc.access-0.0.1.jar",
+          "size": 28625,
+          "sha512": "5ae37f9cbebe11a5e3a96be2a6ecd328b20302cf7cf962941f19f28948b0a53545b9398db9298acfdf382f4dee925ca26fd70fd95257a7c6b35f8e03edd5f0fe",
+          "sha256": "415a84604463b2a11129aa5832378b897271d67698bb1405c78ed6f043593949",
+          "sha1": "5b6a1473fe892c2527032988dc83b3b8f5a6c3ec",
+          "md5": "a032eece6cf812134f8ffa75c4ae29b8"
+        }
+      ]
+    },
+    {
+      "name": "runtimeElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 17,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "dependencies": [
+        {
+          "group": "org.hl7.fhir",
+          "module": "d4m.acc.query",
+          "version": {
+            "requires": "0.0.1"
+          }
+        },
+        {
+          "group": "org.eclipse.xtext",
+          "module": "org.eclipse.xtext",
+          "version": {
+            "requires": "2.39.0"
+          }
+        },
+        {
+          "group": "org.hl7.fhir",
+          "module": "fhir.emf",
+          "version": {
+            "requires": "4.0.1"
+          }
+        },
+        {
+          "group": "com.fasterxml.jackson.core",
+          "module": "jackson-core",
+          "version": {
+            "requires": "2.15.2"
+          }
+        },
+        {
+          "group": "com.fasterxml.jackson.core",
+          "module": "jackson-databind",
+          "version": {
+            "requires": "2.15.2"
+          }
+        },
+        {
+          "group": "com.fasterxml.jackson.core",
+          "module": "jackson-annotations",
+          "version": {
+            "requires": "2.15.2"
+          }
+        },
+        {
+          "group": "org.apache.accumulo",
+          "module": "accumulo-core",
+          "version": {
+            "requires": "2.1.3"
+          }
+        },
+        {
+          "group": "com.google.inject",
+          "module": "guice",
+          "version": {
+            "requires": "7.0.0"
+          }
+        },
+        {
+          "group": "org.slf4j",
+          "module": "slf4j-api",
+          "version": {
+            "requires": "2.0.7"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "d4m.acc.access-0.0.1.jar",
+          "url": "d4m.acc.access-0.0.1.jar",
+          "size": 28625,
+          "sha512": "5ae37f9cbebe11a5e3a96be2a6ecd328b20302cf7cf962941f19f28948b0a53545b9398db9298acfdf382f4dee925ca26fd70fd95257a7c6b35f8e03edd5f0fe",
+          "sha256": "415a84604463b2a11129aa5832378b897271d67698bb1405c78ed6f043593949",
+          "sha1": "5b6a1473fe892c2527032988dc83b3b8f5a6c3ec",
+          "md5": "a032eece6cf812134f8ffa75c4ae29b8"
+        }
+      ]
+    },
+    {
+      "name": "sourcesElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "d4m.acc.access-0.0.1-sources.jar",
+          "url": "d4m.acc.access-0.0.1-sources.jar",
+          "size": 15365,
+          "sha512": "9b72c330bf685482137da566ac3a39f8e14e2f2c2706f6947a20fcfed07b578ced9f00cdbabf763bacaa034b15800857a55143d574f4e151484d9dd0bec0079a",
+          "sha256": "f348bd147a2426175fa8aeef36697889b1176f446cd48222a734496f0eb88fb0",
+          "sha1": "8cd3610ed629b03a780cc7f5c3ea022a1a458863",
+          "md5": "80ef080a8fd4309cb5407a9df465178c"
+        }
+      ]
+    }
+  ]
+}
